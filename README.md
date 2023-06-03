@@ -12,13 +12,17 @@
 ### 👉 Development Command
 
 ```
-npm run dev
+yarn install
+```
+
+```
+yarn run dev
 ```
 
 ### 👉 Build Command
 
 ```
-npm run build
+yarn run build
 ```
 
 ### Update Your Profile
