@@ -1,12 +1,11 @@
 ---
-title: Sam Wilson
-email: samwilson@email.com
+title: Sam Passaglia
+email: samuel.passaglia@ipmu.jp
 image: "/images/avatar.png"
 description: this is meta description
 social:
-  facebook: https://www.facebook.com/
-  twitter: https://www.twitter.com/
-  instagram: https://www.instagram.com/
+  twitter: https://www.twitter.com/SamPassaglia
+  website: https://www.passaglia.jp
 ---
 
-lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr navigation et dolore magna aliqua.
+Physicist and ML Researcher
