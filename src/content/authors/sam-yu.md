@@ -9,4 +9,4 @@ social:
   instagram: 
 ---
 
-Specialize in building AI products, transforming complex problems into efficient AI solutions.
+AI Product Engineer
