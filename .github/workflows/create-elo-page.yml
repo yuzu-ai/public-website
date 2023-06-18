@@ -1,0 +1,42 @@
+name: Create elo benchmark page
+run-name: Convert received jsonl file into markdown page
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+    
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+    
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: '3.x'
+    
+        - name: Run Elo benchmark script
+          run: python scripts/elo_benchmark.py
+        
+        - name: Set Node.js 16.x
+          uses: actions/setup-node@v3
+          with:
+            node-version: 16.x
+  
+        - name: Run install
+          uses: borales/actions-yarn@v4
+          with:
+            cmd: install 
+
+        - name: Build production bundle
+          uses: borales/actions-yarn@v4
+          with:
+            cmd: build
+        
+        - name: Commit & push website update
+          uses: stefanzweifel/git-auto-commit-action@v4
+          with:
+            commit_message: Update elo benchmark page
