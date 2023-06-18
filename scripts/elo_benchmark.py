@@ -5,7 +5,8 @@ from datetime import datetime
 
 def convert_to_markdown(json_file, template_file, markdown_file):
     with open(json_file, "r") as f:
-        data = json.load(f)
+        last_line = f.readlines()[-1]
+        data = json.load(last_line)
 
     rankings = sorted(data["rankings"], key=lambda x: x["elo"], reverse=True)
     table = "| Rank # | Model | Elo |\n| --- | --- | --- |\n"
