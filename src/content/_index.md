@@ -22,16 +22,16 @@ features:
       label: "🤗 Huggingface"
       link: "https://huggingface.co/yuzuai"
 
-  - title: "The Top Reasons to Choose YuzuAI for Your Next AI Project"
-    image: "/images/service-3.png"
-    content: "Choosing YuzuAI means opting for a highly specialized, innovative, and dedicated team focused on perfecting AI language models for Japanese. "
-    bulletpoints:
-      - "Local and Private Large Language Model"
-      - "Specialize in Japanese Language"
-      - "Use any front-end library or framework, or custom build, for any project size."
-      - "Built on cutting-edge technology to keep your projects up-to-date."
-    button:
-      enable: false
-      label: ""
-      link: ""
+  # - title: "The Top Reasons to Choose YuzuAI for Your Next AI Project"
+  #   image: "/images/service-3.png"
+  #   content: "Choosing YuzuAI means opting for a highly specialized, innovative, and dedicated team focused on perfecting AI language models for Japanese. "
+  #   bulletpoints:
+  #     - "Local and Private Large Language Model"
+  #     - "Specialize in Japanese Language"
+  #     - "Use any front-end library or framework, or custom build, for any project size."
+  #     - "Built on cutting-edge technology to keep your projects up-to-date."
+  #   button:
+  #     enable: false
+  #     label: ""
+  #     link: ""
 ---
