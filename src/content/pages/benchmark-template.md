@@ -13,4 +13,4 @@ Elo ranking is a system for comparing the skill levels of models head to head. I
 
 ### Rankings
 
-{{< elo_table >}}
+.
