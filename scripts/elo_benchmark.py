@@ -41,7 +41,7 @@ def convert_to_markdown(json_file, template_file, markdown_file):
     table = "| Rank # | Model | Strength |\n| --- | --- | --- |\n"
     for i, rank in enumerate(rankings):
         table += (
-            f"| {i+1} | {make_clickable_model(rank['model_id'])} | {rank['mle']):.3f} |\n"
+            f"| {i+1} | {make_clickable_model(rank['model_id'])} | {rank['mle']:.3f} |\n"
         )
 
     with open(template_file, "r") as f:
