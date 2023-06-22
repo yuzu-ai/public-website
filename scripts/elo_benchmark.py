@@ -12,24 +12,13 @@ def make_clickable_model(model_name):
     link = f"https://huggingface.co/{model_name}"
 
 
-    # Can also hardcode urls and names here here
-    # if model_name == "HuggingFaceH4/stable-vicuna-13b-2904":
-    #     link = VICUNA_LINK
-    #     model_name = "stable-vicuna-13b"
-    # elif model_name == "HuggingFaceH4/llama-7b-ift-alpaca":
-    #     link = ALPACA_LINK
-    #     model_name = "alpaca-13b"
-    # if model_name == "dolly-12b":
-    #     link = DOLLY_LINK
-    # elif model_name == "vicuna-13b":
-    #     link = VICUNA_LINK
-    # elif model_name == "koala-13b":
-    #     link = KOALA_LINK
-    # elif model_name == "oasst-12b":
-    #     link = OASST_LINK
-    # #else:
-    # #    link = MODEL_PAGE
-  
+    #Can also hardcode urls and names here
+    if 'gpt' in model_name:
+        link = 'https://openai.com/'
+        model_name = "GPT-3.5"
+
+    model_name = model_name.split('/')[-1].replace('-', ' ')
+
     return model_hyperlink(link, model_name)
 
 def convert_to_markdown(json_file, template_file, markdown_file):
