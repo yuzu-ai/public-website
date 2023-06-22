@@ -2,8 +2,6 @@ import os
 import json
 from datetime import datetime
 
-
-
 def model_hyperlink(link, model_name):
     return f'<a target="_blank" href="{link}" style={{{{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}}}>{model_name}</a>'
 
@@ -17,7 +15,7 @@ def make_clickable_model(model_name):
         link = 'https://openai.com/'
         model_name = "GPT-3.5"
 
-    model_name = model_name.split('/')[-1].replace('-', ' ')
+    #model_name = model_name.split('/')[-1].replace('-', ' ')
 
     return model_hyperlink(link, model_name)
 
