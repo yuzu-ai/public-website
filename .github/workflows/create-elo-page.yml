@@ -5,7 +5,7 @@ on:
         branches:
             - main
         paths:
-            - src/content
+            - src/content/pages/registry.jsonl
 
 jobs:
     build:
