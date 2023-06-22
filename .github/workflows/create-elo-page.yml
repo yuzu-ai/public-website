@@ -6,6 +6,7 @@ on:
             - main
         paths:
             - src/content/pages/registry.jsonl
+            - src/content/pages/benchmark-template.md
 
 jobs:
     build:
