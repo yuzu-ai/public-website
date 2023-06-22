@@ -11,7 +11,9 @@ def convert_to_markdown(json_file, template_file, markdown_file):
     rankings = sorted(data["ranking"], key=lambda x: x["mle"], reverse=True)
     table = "| Rank # | Model | Strength |\n| --- | --- | --- |\n"
     for i, rank in enumerate(rankings):
-        table += f"| {i+1} | {rank['model_id']} | {int(rank['mle'])} |\n"
+        table += (
+            f"| {i+1} | {rank['model_id']} | {format(float(rank['mle']), '.5f')} |\n"
+        )
 
     with open(template_file, "r") as f:
         lines = f.readlines()
