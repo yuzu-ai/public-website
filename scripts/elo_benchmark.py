@@ -8,10 +8,10 @@ def convert_to_markdown(json_file, template_file, markdown_file):
         last_line = f.readlines()[-1]
         data = json.load(last_line)
 
-    rankings = sorted(data["rankings"], key=lambda x: x["elo"], reverse=True)
-    table = "| Rank # | Model | Elo |\n| --- | --- | --- |\n"
+    rankings = sorted(data["ranking"], key=lambda x: x["mle"], reverse=True)
+    table = "| Rank # | Model | Strength |\n| --- | --- | --- |\n"
     for i, rank in enumerate(rankings):
-        table += f"| {i+1} | {rank['model']} | {int(rank['elo'])} |\n"
+        table += f"| {i+1} | {rank['model']} | {int(rank['mle'])} |\n"
 
     with open(template_file, "r") as f:
         lines = f.readlines()
