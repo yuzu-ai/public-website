@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 def model_hyperlink(link, model_name):
-    return f'<a target="_blank" href="{link}" style="color: var(--link-text-color); text-decoration: underline;text-decoration-style: dotted;">{model_name}</a>'
+    return f'<a target="_blank" href="{link}" style={{{{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}}}>{model_name}</a>'
 
 
 def make_clickable_model(model_name):
@@ -13,7 +13,7 @@ def make_clickable_model(model_name):
 
 
     #Can also hardcode urls and names here
-    if 'gpt' in model_name:
+    if 'gpt-3.5-turbo' in model_name:
         link = 'https://openai.com/'
         model_name = "GPT-3.5"
 
