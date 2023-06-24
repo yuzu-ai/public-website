@@ -3,6 +3,7 @@ const path = require("path");
 const matter = require("gray-matter");
 const config = require("../src/config/config.json");
 
+
 const { blog_folder } = config.settings;
 const jsonDir = "./.json";
 
