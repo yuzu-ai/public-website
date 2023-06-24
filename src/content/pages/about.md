@@ -2,7 +2,7 @@
 title: "Hello, we are YuzuAI!"
 meta_title: "About"
 description: "YuzuAI about page"
-image: "/images/yuzu-large.png"
+image: "/images/yuzu-ai-logo-large.png"
 layout: "about"
 draft: false
 ---
