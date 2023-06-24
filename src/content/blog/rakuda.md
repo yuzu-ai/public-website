@@ -3,7 +3,7 @@ title: "Ranking Japanese LLMs"
 meta_title: "Introducing the Rakuda Benchmark"
 description: "Introducing the Rakuda Benchmark"
 date: 2023-06-23T05:00:00Z
-image: "/images/blog-rakuda.jpeg"
+image: "/images/blog-yuzu-tokyo-tower.jpeg"
 categories: ["LLM"]
 author: "Sam Passaglia"
 tags: ["blog", "japanese", "machine learning", "yuzu-ai"]
