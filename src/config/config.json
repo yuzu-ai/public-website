@@ -5,8 +5,8 @@
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
-    "logo": "/images/Yuzu_AI-logo-v1.png",
-    "logo_darkmode": "/images/logo-darkmode.png",
+    "logo": "/images/yuzu-logo-v2.png",
+    "logo_darkmode": "/images/yuzu-logo-v2.png",
     "logo_width": "150",
     "logo_height": "150",
     "logo_text": "YuzuAI"
