@@ -24,12 +24,12 @@ def convert_to_markdown(json_file, template_file, markdown_file):
         last_line = f.readlines()[-1]
         data = json.loads(last_line)
 
-    rankings = sorted(data["ranking"], key=lambda x: x["mle"], reverse=True)
-    table = "| Rank # | Model | Strength |\n| --- | --- | --- |\n"
+    rankings = sorted(data["ranking"], key=lambda x: x["median"], reverse=True)
+    table = "| Rank | Model | Strength | Win Rate | Stronger than the next model at confidence level  | \n| :--- | :---: | :---: | :---: | :---: |\n"
     for i, rank in enumerate(rankings):
-        table += (
-            f"| {i+1} | {make_clickable_model(rank['model_id'])} | {rank['mle']:.3f} |\n"
-        )
+        #assert(round(rank['one_sigma_up'],2) == round(rank['one_sigma_down'],2))
+        table += f"| {i+1} | {make_clickable_model(rank['model_id'])} | {rank['median']:.3f} ± {rank['one_sigma_up']:.2f}  | {rank['win_rate']:.0%} | { str(round(rank['stronger_than_next_confidence']*100,1))+'%' if rank['stronger_than_next_confidence']!=0 else 'N/A'}\n"
+
 
     with open(template_file, "r") as f:
         lines = f.readlines()
