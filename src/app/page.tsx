@@ -1,7 +1,7 @@
 import ImageFallback from "@/components/ImageFallback";
 import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
-import CallToAction from "@/partials/CallToAction";
+// import CallToAction from "@/partials/CallToAction";
 import SeoMeta from "@/partials/SeoMeta";
 // import Testimonials from "@/partials/Testimonials";
 import { Button, Feature } from "@/types";
@@ -9,14 +9,14 @@ import { FaCheck } from "react-icons/fa/index.js";
 
 const Home = () => {
   const homepage = getListPage("_index.md");
-  const testimonial = getListPage("sections/testimonial.md");
-  const callToAction = getListPage("sections/call-to-action.md");
+  // const testimonial = getListPage("sections/testimonial.md");
+  // const callToAction = getListPage("sections/call-to-action.md");
   const { frontmatter } = homepage;
   const {
     banner,
     features,
   }: {
-    banner: { title: string; image: string; content?: string; button?: Button };
+    banner: { title: string; image: string; content?: string; buttons?: Button[] };
     features: Feature[];
   } = frontmatter;
 
@@ -35,10 +35,12 @@ const Home = () => {
                 className="mb-8"
                 dangerouslySetInnerHTML={markdownify(banner.content ?? "")}
               />
-              {banner.button!.enable && (
-                <a className="btn btn-primary" href={banner.button!.link}>
-                  {banner.button!.label}
-                </a>
+              {banner.buttons && banner.buttons.map((button, index) =>
+                button.enable && (
+                  <a key={index} className="btn btn-primary mr2" href={button.link} style={{marginRight: '10px'}}>
+                    {button.label}
+                  </a>
+                )
               )}
             </div>
             {banner.image && (
@@ -56,7 +58,7 @@ const Home = () => {
         </div>
       </section>
 
-      {features.map((feature, index: number) => (
+      {/* {features.map((feature, index: number) => (
         <section
           key={index}
           className={`section-sm ${index % 2 === 0 && "bg-gradient"}`}
@@ -108,10 +110,10 @@ const Home = () => {
             </div>
           </div>
         </section>
-      ))}
+      ))} */}
 
       {/* <Testimonials data={testimonial} /> */}
-      <CallToAction data={callToAction} />
+      {/* <CallToAction data={callToAction} /> */}
     </>
   );
 };

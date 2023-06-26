@@ -10,13 +10,6 @@ tags: ["blog", "japanese", "machine learning", "yuzu-ai"]
 draft: false
 ---
 
-DRAFT 6/24/13:59pm
-
-```
-{note}
-This post also appears on the [YuzuAI blog](https://yuzuai.jp/), and all of the code and data used to get these results is now available on [github](https://github.com/yuzu-ai/japanese-llm-ranking).
-```
-
 The open-source community has been hard at work trying to catch up to closed Large Language Models like ChatGPT. Open models --- models whose insides are released publicly --- are important because they enable AI research and development outside of the control of large corporations.
 
 In English, the best open models are now at roughly the level of the GPT-3.5 model that powers the free tier of ChatGPT. The Japanese performance of open models seems to lag behind, however, and the Japanese open-source community is not as active as the community in the West. Nonetheless the past couple months have seen the release of a [3.6-billion parameter model](https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo) by [rinna](https://rinna.co.jp/) and the 7-billion parameter [open-calm](https://huggingface.co/cyberagent/open-calm-7b) model by [CyberAgent](https://www.cyberagent.co.jp/), both trained exclusively on Japanese text.
@@ -118,36 +111,27 @@ For our initial release we run our benchmark with 6 models. These are:
 
 We get each of these models to answer all the **Rakuda** questions and then ask GPT-3.5 to judge all the answers against each other. These answers and reviews are all in the [github repository](https://github.com/yuzu-ai/japanese-llm-ranking/). We find the following win rates for each model:
 
-{% image "./src/content/blog/rakuda/rakuda_v1winrate.png" , "Win rates of AI assistants on the Rakuda benchmark"  %} 
+![Win rates of AI assistants on the Rakuda benchmark]("./src/content/blog/rakuda/rakuda_v1winrate.png")
 
 We then use MCMC to estimate the Bradley-Terry parameters and their uncertainties. See [this notebook](https://github.com/yuzu-ai/japanese-llm-ranking/blob/main/jrank/bradley-terry.ipynb) for the calculation. We find the following strengths:
 
-{% image "./src/content/blog/rakuda/rakuda_v1ranking.png" , "Bradley-Terry strengths of AI assistants on the Rakuda benchmark"  %} 
+![Bradley-Terry strengths of AI assistants on the Rakuda benchmark]("./src/content/blog/rakuda/rakuda_v1ranking.png")
 
 We find that both the overall win-rates and the Bradley-Terry strengths show the same qualitative features. GPT-3.5 is far and away the best Japanese AI assistant among the models we tested. Among the open models, open-calm takes the lead. This is surprising since open-calm-7b is a base model, not an instruction-tuned Assistant. An instruction-tuned model based on open-calm, stormy-7b, takes the next rung of our ranking.
 
 One of the advantages of the Bradley-Terry approach is that it allows us to quantify how statistically confident we are in our statement that our reviewer (GPT-3.5) prefers open-calm-7b to stormy-7b. By plotting the MCMC samples, we can trace out the posterior distribution for their relative strength. This automatically marginalizes over nuisance parameters like the home-field advantage parameter $$\alpha$$.
 
-{% image "./src/content/blog/rakuda/rakuda_v1diff.png" , "Relative strength of open-calm-7b and stormy-7b"  %}
+!["Relative strength of open-calm-7b and stormy-7b"]("./src/content/blog/rakuda/rakuda_v1diff.png")
 
 The MCMC results show that open-calm-7b is preferred to stormy-7b at the 98.7% confidence level. This suggests that the instruction dataset used to fine-tune stormy-7b does not produce an assistant more helpful in the eyes of the reviewer.
 
 Here are our full results as a table:
 
-| Rank | Model | Strength | Win Rate | Stronger than the next model at confidence level  | 
-| :--- | :---: | :---: | :---: | :---: |
-| 1 | <a target="_blank" href="https://openai.com/" style="color:#1e50a2, textDecoration: underline,textDecorationStyle: dotted">GPT-3.5</a> | 2.487 ± 0.19  | 94% | 100.0%
-| 2 | <a target="_blank" href="https://huggingface.co/cyberagent/open-calm-7b" style="color:#1e50a2, textDecoration: underline,textDecorationStyle: dotted">cyberagent/open-calm-7b</a> | -0.063 ± 0.10  | 52% | 98.6%
-| 3 | <a target="_blank" href="https://huggingface.co/izumi-lab/stormy-7b-10ep" style="color:#1e50a2, textDecoration: underline,textDecorationStyle: dotted">izumi-lab/stormy-7b-10ep</a> | -0.384 ± 0.10  | 44% | 90.7%
-| 4 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo" style="color:#1e50a2, textDecoration: underline,textDecorationStyle: dotted">rinna/japanese-gpt-neox-3.6b-instruction-ppo</a> | -0.575 ± 0.10  | 39% | 83.6%
-| 5 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft-v2" style="color:#1e50a2, textDecoration: underline,textDecorationStyle: dotted">rinna/japanese-gpt-neox-3.6b-instruction-sft-v2</a> | -0.717 ± 0.10  | 36% | 59.0%
-| 6 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b" style="color:#1e50a2, textDecoration: underline,textDecorationStyle: dotted">rinna/japanese-gpt-neox-3.6b</a> | -0.750 ± 0.10  | 35% | N/A
-
 We also find a home-field advantage parameter $$\alpha = -0.524 \pm 0.07$$. With the model strengths and home-field advantage parameter here, the outcome of any matchup between these models can be predicted with the Bradley-Terry probability formula in the previous section.
 
 # Parting words
 
-We hope that the Rakuda benchmark and leaderboard will stimulate the development of better and more useful open-source LLMs for Japanese. If you have any model you'd like to add to the leaderboard, or any ideas for how to improve Rakuda, please open an issue on the github repository or contact me directly by email at ![email_address_image](https://passaglia.jp/assets/images/email.png), on twitter [@SamPassaglia](https://twitter.com/SamPassaglia), or on the YuzuAI discord. As we add models, we will continuously update [the main benchmark page](https://yuzuai.jp/benchmark).
+We hope that the Rakuda benchmark and leaderboard will stimulate the development of better and more useful open-source LLMs for Japanese. If you have any model you'd like to add to the leaderboard, or any ideas for how to improve Rakuda, please open an issue on the github repository or contact me directly on twitter [@SamPassaglia](https://twitter.com/SamPassaglia) or on the YuzuAI discord. As we add models, we will continuously update [the main benchmark page](https://yuzuai.jp/benchmark).
 
 
 
