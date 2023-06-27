@@ -17,7 +17,7 @@ In English, the best open models are now at roughly the level of the GPT-3.5 mod
 
 How good are open-source models in Japanese, and how do they compare to the [strong Japanese performance of ChatGPT](https://passaglia.jp/gpt-japanese/)? And within the open-source space, how do large models trained primarily in English compare to models which are smaller but which focus their training and tokenization architectures on Japanese?
 
-To answer these questions, we introduce here the **Rakuda** benchmark and ranking for Japanese AI assistants. Read on for details about how it works, or head directly to [the leaderboard](https://yuzuai.jp/benchmark) to see how the first 6 competitors stack up!
+To answer these questions, we introduce here the **Rakuda** benchmark and ranking for Japanese AI assistants. Read on for details about how it works, or head directly to [the leaderboard](/benchmark) to see how the first 6 competitors stack up!
 
 # The Rakuda Benchmark
 
@@ -145,7 +145,7 @@ We also find a home-field advantage parameter $$\alpha = -0.524 \pm 0.07$$. With
 
 # Parting words
 
-We hope that the Rakuda benchmark and leaderboard will stimulate the development of better and more useful open-source LLMs for Japanese. If you have any model you'd like to add to the leaderboard, or any ideas for how to improve Rakuda, please open an issue on the github repository or contact me directly on twitter [@SamPassaglia](https://twitter.com/SamPassaglia) or on the [YuzuAI discord](https://discord.com/invite/bHB9e2rq2r). As we add models, we will continuously update [the main benchmark page](https://yuzuai.jp/benchmark).
+We hope that the Rakuda benchmark and leaderboard will stimulate the development of better and more useful open-source LLMs for Japanese. If you have any model you'd like to add to the leaderboard, or any ideas for how to improve Rakuda, please open an issue on the github repository or contact me directly on twitter [@SamPassaglia](https://twitter.com/SamPassaglia) or on the [YuzuAI discord](https://discord.com/invite/bHB9e2rq2r). As we add models, we will continuously update [the main benchmark page](/benchmark).
 
 
 
