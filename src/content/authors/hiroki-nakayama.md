@@ -1,7 +1,7 @@
 ---
 title: Hiroki Nakayama
 email:
-image: "/images/hn-1.png"
+image: "/images/profiles/hn-1.jpg"
 description: Hiroki Nakayama profile
 social:
   facebook:
