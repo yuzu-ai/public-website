@@ -5,7 +5,6 @@ import Social from "@/components/Social";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import social from "@/config/social.json";
-import { markdownify } from "@/lib/utils/textConverter";
 import Link from "next/link";
 
 const Footer = () => {
@@ -32,11 +31,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      {/* <div className="border-t border-border py-7 dark:border-darkmode-border">
-        <div className="container text-center text-light dark:text-darkmode-light">
-          <p dangerouslySetInnerHTML={markdownify(copyright)} />
-        </div>
-      </div> */}
     </footer>
   );
 };

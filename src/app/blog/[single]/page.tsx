@@ -1,5 +1,4 @@
 import BlogCard from "@/components/BlogCard";
-import Disqus from "@/components/Disqus";
 import ImageFallback from "@/components/ImageFallback";
 import MDXContent from "@/components/MDXContent";
 import Share from "@/components/Share";
@@ -132,7 +131,6 @@ const PostSingle = ({ params }: { params: { single: string } }) => {
                   />
                 </div>
               </div>
-              <Disqus className="mt-20" />
             </article>
           </div>
 
