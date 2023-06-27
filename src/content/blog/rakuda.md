@@ -1,5 +1,5 @@
 ---
-title: "Ranking Japanese LLMs"
+title: "Ranking Japanese LLMs with Rakuda"
 meta_title: "Introducing the Rakuda Benchmark"
 description: "Introducing the Rakuda Benchmark"
 date: 2023-06-23T05:00:00Z
@@ -83,13 +83,17 @@ But we would also like to be able to compute a ranking when these conditions are
 
 The [Bradley-Terry model](https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model) is one way to do that. It models one-on-one competitions by assigning to every competitor $$i$$ (in our case a Japanese LLM) a  **strength parameter** $$\beta_i$$. It then assumes that the probability that competitor $$i$$ beats competitor $$j$$ in a match just depends on their relative strength $$\beta_i - \beta_j$$. A commonly used form for that probability is
 
-$$ p_{ij} \equiv \textrm{Probability} ( i \textrm{ beats } j) = \dfrac{e^{\alpha + \beta_i - \beta_j}}{1 + e^{\alpha + \beta_i - \beta_j} } $$,
+$$
+p_{ij} \equiv \textrm{Probability} ( i \textrm{ beats } j) = \dfrac{e^{\alpha + \beta_i - \beta_j}}{1 + e^{\alpha + \beta_i - \beta_j} }
+$$
 
 where we have complicated things a bit by adding a home-field advantage parameter $$\alpha$$ that enhances model $$i$$'s strength. In this context the home-field advantage is any bias the reviewer might have towards or against the model that is shown to it first. We always order match pairs $$(i, j)$$ with $$i$$ as the home team.
 
 We now want to fit for the vector of model strength $$\vec{\beta}$$ given our data. We can define the data vector $$\vec{d}$$ as a vector that contains an entry for each match: 1 if the home team wins or 0 if the home team loses. Then the probability of getting our exact data vector given a set of model parameters $$(\alpha, \vec{\beta})$$ is just the product over every match of $$p_{ij}$$ if the home team won the match, or $$(1-p_{ij})$$ if the home team lost. This is the likelihood
 
-$$ \textrm{Likelihood}(\alpha, \vec{\beta}) = \prod_{\textrm{matches}} p_{ij}^d \times (1-p_{ij})^{1-d} $$
+$$
+\textrm{Likelihood}(\alpha, \vec{\beta}) = \prod_{\textrm{matches}} p_{ij}^d \times (1-p_{ij})^{1-d}
+$$
 
 The best fit parameters are those which maximize the likelihood. This maximization is very easy to do in python with scipy's [optimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html) library. A couple technical points: first, we deal with draws by counting them as a half-win for each team. Second, because winning probabilities are controlled only by relative model strengths, a constant can be added or subtracted to all model strengths without changing the likelihood. We fix this gauge freedom by imposing that the model strengths all add up to zero.
 

@@ -5,6 +5,7 @@ import Footer from "@/partials/Footer";
 import Header from "@/partials/Header";
 import Providers from "@/partials/Providers";
 import "@/styles/main.scss";
+import 'katex/dist/katex.min.css';
 
 export default function RootLayout({
   children,
