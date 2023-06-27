@@ -1,7 +1,7 @@
 ---
 title: Sam Yu
 email: 
-image: "/images/avatar.png"
+image: "/images/profiles/sy-1.png"
 description: Sam Yu profile
 social:
   facebook: 
