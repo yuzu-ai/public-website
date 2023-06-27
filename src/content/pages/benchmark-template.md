@@ -1,16 +1,18 @@
 ---
-title: "Benchmark"
+title: "Rakuda Benchmark"
 meta_title: ""
-description: "this is meta description"
+description: ""
 draft: false
 ---
 
-## Elo Score
+## Rakuda
 
 ### Intro
 
-Elo ranking is a system for comparing the skill levels of models head to head. It assigns numerical ratings based on their performance in specific tasks, allowing for objective comparisons. This helps researchers and developers evaluate the strengths and weaknesses of different models effectively.
+Link to blog post here
 
 ### Rankings
 
-.
+<|TABLE|>
+
+<|DATE|>

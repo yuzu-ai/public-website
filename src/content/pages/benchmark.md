@@ -1,15 +1,15 @@
 ---
-title: "Benchmark"
+title: "Rakuda Benchmark"
 meta_title: ""
 description: "this is meta description"
 draft: false
 ---
 
-## Elo Score
+## Rakuda
 
 ### Intro
 
-Elo ranking is a system for comparing the skill levels of models head to head. It assigns numerical ratings based on their performance in specific tasks, allowing for objective comparisons. This helps researchers and developers evaluate the strengths and weaknesses of different models effectively.
+Link to blog post here
 
 ### Rankings
 
@@ -22,4 +22,5 @@ Elo ranking is a system for comparing the skill levels of models head to head. I
 | 5 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft-v2" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b-instruction-sft-v2</a> | -0.717 ± 0.10  | 36% | 59.0%
 | 6 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b</a> | -0.750 ± 0.10  | 35% | N/A
 
-Updated: 2023-06-23
+
+2023-06-23

@@ -32,22 +32,16 @@ def convert_to_markdown(json_file, template_file, markdown_file):
 
 
     with open(template_file, "r") as f:
-        lines = f.readlines()
+        template = f.read()
 
-    lines.pop()
-    lines.append(table)
-
-    lines.append("\n")
-    lines.append(f"Updated: {datetime.fromisoformat(data['date']).date()}")
+    template = template.replace('<|TABLE|>', table)
+    template = template.replace('<|DATE|>', str(datetime.fromisoformat(data['date']).date()))
 
     # delete existing markdown_file
     os.remove(markdown_file)
 
     with open(markdown_file, "w") as file:
-        file.writelines(lines)
-
-    print("Converted elo ranking to markdown table")
-
+        file.write(template)
 
 if __name__ == "__main__":
     convert_to_markdown(

@@ -8,7 +8,7 @@ import ImageFallback from "./ImageFallback";
 
 const BlogCard = ({ data }: { data: Post }) => {
   const { summary_length, blog_folder } = config.settings;
-  const { title, image, author, categories, date } = data.frontmatter;
+  const { title, image, author, categories, date, description} = data.frontmatter;
   return (
     <div className="bg-body dark:bg-darkmode-body">
       {image && (
@@ -42,7 +42,7 @@ const BlogCard = ({ data }: { data: Post }) => {
         {date && <li className="inline-block">{dateFormat(date)}</li>}
       </ul>
       <p className="mb-6">
-        {plainifyWithLineBreaks(data.content, Number(summary_length))}
+        {description ? description : plainifyWithLineBreaks(data.content, Number(summary_length))}
       </p>
       <Link
         className="btn btn-outline-primary btn-sm"
