@@ -1,9 +1,9 @@
 ---
 # Banner
 banner:
-  title: "YuzuAI: Open-Source Research for Japanese Large Language Models"
+  title: "Open-Source Research for Japanese Large Language Models"
   content: ""
-  image: "/images/banner.png"
+  image: "/images/yuzu-ai-logo-small.png"
   buttons:
     - enable: true
       label: "github"
