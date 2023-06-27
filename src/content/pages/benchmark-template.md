@@ -13,6 +13,6 @@ Link to blog post here
 
 ### Rankings
 
-<|TABLE|>
+$TABLE$
 
-<|DATE|>
+$DATE$
