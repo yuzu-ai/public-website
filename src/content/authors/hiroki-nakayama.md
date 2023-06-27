@@ -1,12 +1,12 @@
 ---
 title: Hiroki Nakayama
-email: 
-image: "/images/avatar.png"
+email:
+image: "/images/hn-1.png"
 description: Hiroki Nakayama profile
 social:
-  facebook: 
-  twitter: 
-  instagram: 
+  facebook:
+  twitter:
+  instagram:
 ---
 
 Data Scientist
