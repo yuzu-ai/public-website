@@ -4,9 +4,9 @@ meta_title: "Introducing the Rakuda Benchmark"
 description: "Introducing the Rakuda Benchmark"
 date: 2023-06-23T05:00:00Z
 image: "/images/blog-yuzu-tokyo-tower.jpeg"
-categories: ["LLM"]
+categories: ["research"]
 author: "Sam Passaglia"
-tags: ["blog", "japanese", "machine learning", "yuzu-ai"]
+tags: ["rakuda", "evaluation"]
 draft: false
 ---
 
@@ -131,9 +131,7 @@ We also find a home-field advantage parameter $$\alpha = -0.524 \pm 0.07$$. With
 
 # Parting words
 
-We hope that the Rakuda benchmark and leaderboard will stimulate the development of better and more useful open-source LLMs for Japanese. If you have any model you'd like to add to the leaderboard, or any ideas for how to improve Rakuda, please open an issue on the github repository or contact me directly on twitter [@SamPassaglia](https://twitter.com/SamPassaglia) or on the YuzuAI discord. As we add models, we will continuously update [the main benchmark page](https://yuzuai.jp/benchmark).
-
-
+We hope that the Rakuda benchmark and leaderboard will stimulate the development of better and more useful open-source LLMs for Japanese. If you have any model you'd like to add to the leaderboard, or any ideas for how to improve Rakuda, please open an issue on the github repository or contact me directly on twitter [@SamPassaglia](https://twitter.com/SamPassaglia) or on the [YuzuAI discord](https://discord.com/invite/bHB9e2rq2r). As we add models, we will continuously update [the main benchmark page](https://yuzuai.jp/benchmark).
 
 
 
