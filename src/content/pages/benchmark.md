@@ -1,7 +1,7 @@
 ---
 title: "Rakuda Benchmark"
 meta_title: ""
-description: "this is meta description"
+description: ""
 draft: false
 ---
 
