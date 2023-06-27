@@ -4,7 +4,7 @@ meta_title: "Introducing the Rakuda Benchmark"
 description: "Introducing the Rakuda Benchmark"
 date: 2023-06-23T05:00:00Z
 image: "/images/blog-yuzu-tokyo-tower.jpeg"
-categories: ["Research Reports"]
+categories: ["research"]
 author: "Sam Passaglia"
 tags: ["rakuda", "evaluation"]
 draft: false
