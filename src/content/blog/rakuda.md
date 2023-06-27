@@ -111,17 +111,17 @@ For our initial release we run our benchmark with 6 models. These are:
 
 We get each of these models to answer all the **Rakuda** questions and then ask GPT-3.5 to judge all the answers against each other. These answers and reviews are all in the [github repository](https://github.com/yuzu-ai/japanese-llm-ranking/). We find the following win rates for each model:
 
-![Win rates of AI assistants on the Rakuda benchmark]("./src/content/blog/rakuda/rakuda_v1winrate.png")
+![Win rates of AI assistants on the Rakuda benchmark](/images/blog/rakuda/rakuda_v1winrate.png)
 
 We then use MCMC to estimate the Bradley-Terry parameters and their uncertainties. See [this notebook](https://github.com/yuzu-ai/japanese-llm-ranking/blob/main/jrank/bradley-terry.ipynb) for the calculation. We find the following strengths:
 
-![Bradley-Terry strengths of AI assistants on the Rakuda benchmark]("./src/content/blog/rakuda/rakuda_v1ranking.png")
+![Bradley-Terry strengths of AI assistants on the Rakuda benchmark](/images/blog/rakuda/rakuda_v1ranking.png)
 
 We find that both the overall win-rates and the Bradley-Terry strengths show the same qualitative features. GPT-3.5 is far and away the best Japanese AI assistant among the models we tested. Among the open models, open-calm takes the lead. This is surprising since open-calm-7b is a base model, not an instruction-tuned Assistant. An instruction-tuned model based on open-calm, stormy-7b, takes the next rung of our ranking.
 
 One of the advantages of the Bradley-Terry approach is that it allows us to quantify how statistically confident we are in our statement that our reviewer (GPT-3.5) prefers open-calm-7b to stormy-7b. By plotting the MCMC samples, we can trace out the posterior distribution for their relative strength. This automatically marginalizes over nuisance parameters like the home-field advantage parameter $$\alpha$$.
 
-!["Relative strength of open-calm-7b and stormy-7b"]("./src/content/blog/rakuda/rakuda_v1diff.png")
+!["Relative strength of open-calm-7b and stormy-7b"](/images/blog/rakuda/rakuda_v1diff.png)
 
 The MCMC results show that open-calm-7b is preferred to stormy-7b at the 98.7% confidence level. This suggests that the instruction dataset used to fine-tune stormy-7b does not produce an assistant more helpful in the eyes of the reviewer.
 
