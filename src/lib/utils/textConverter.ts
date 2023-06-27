@@ -34,7 +34,8 @@ export const plainify = (content: string) => {
   return stripHTML;
 };
 
-export const plainifyWithLineBreaks = (content: string, summary_length: number) => {
+export const plainifyWithLineBreaks = (content: string | undefined, summary_length: number) => {
+  if (!content) return "";
   const planifiedContent = plainify(content);
   const slicedContent = planifiedContent!.slice(0, Number(summary_length));
   const lastSpaceIndex = slicedContent.lastIndexOf(" ", summary_length);
