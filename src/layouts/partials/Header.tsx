@@ -58,7 +58,6 @@ const Header = () => {
           id="hide-button"
           htmlFor="nav-toggle"
           className="order-3 hidden cursor-pointer items-center text-dark dark:text-white lg:order-1"
-          onClick={() => document.getElementById('nav-toggle').checked = true}
         >
           <svg className="h-6 fill-current" viewBox="0 0 20 20">
             <title>Menu Close</title>
@@ -103,7 +102,6 @@ const Header = () => {
                               pathname === child.url) &&
                             "active"
                           }`}
-                          onClick={() => document.getElementById('nav-toggle').checked = false}
                         >
                           {child.name}
                         </Link>
@@ -119,7 +117,12 @@ const Header = () => {
                       (pathname === `${menu.url}/` || pathname === menu.url) &&
                       "active"
                     }`}
-                    onClick={() => document.getElementById('nav-toggle').checked = false}
+                    onClick={() => {
+                      const navToggle = document.getElementById('nav-toggle');
+                      if (navToggle instanceof HTMLInputElement) {
+                        navToggle.checked = false;
+                      }
+                    }}
                   >
                     {menu.name}
                   </Link>
