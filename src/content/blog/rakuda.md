@@ -141,7 +141,7 @@ Here are our full results as a table:
 | 5 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft-v2" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b-instruction-sft-v2</a> | -0.717 ± 0.10  | 36% | 59.0%
 | 6 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b</a> | -0.750 ± 0.10  | 35% | N/A
 
-We also find a home-field advantage parameter $$\alpha = -0.524 \pm 0.07$$. With the model strengths and home-field advantage parameter here, the outcome of any matchup between these models can be predicted with the Bradley-Terry probability formula in the previous section.
+We also find a home-field advantage parameter $$\alpha = -0.524 \pm 0.07$$. The model strengths and home-field advantage parameter can be used to predict the outcome of any matchup between these models by using the Bradley-Terry probability formula in the previous section.
 
 # Parting words
 
