@@ -21,7 +21,7 @@ Please contact us if you have any models that you'd like us to add to this ranki
 | 6 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b</a> | -0.750 ± 0.10  | 35% | N/A
 
 
-![Bradley-Terry strengths of AI assistants on the Rakuda benchmark](/images/blog/rakuda/rakuda_v1ranking.png) 
-![Win rates of AI assistants on the Rakuda benchmark](/images/blog/rakuda/rakuda_v1winrate.png)
+![Bradley-Terry strengths of AI assistants on the Rakuda benchmark](/images/charts/rakuda_v1ranking.png) 
+![Win rates of AI assistants on the Rakuda benchmark](/images/charts/rakuda_v1winrate.png)
 
 Date Updated: 2023-06-23
