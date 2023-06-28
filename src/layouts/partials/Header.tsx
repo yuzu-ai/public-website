@@ -6,7 +6,7 @@ import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import { IoSearch } from "react-icons/io5/index.js";
 
 export interface ChildNavigationLink {
@@ -27,6 +27,11 @@ const Header = () => {
   const { navigation_button, settings } = config;
   // get current path
   const pathname = usePathname();
+
+  // scroll to top on route change
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [pathname]);
 
   return (
     <header
@@ -53,6 +58,7 @@ const Header = () => {
           id="hide-button"
           htmlFor="nav-toggle"
           className="order-3 hidden cursor-pointer items-center text-dark dark:text-white lg:order-1"
+          onClick={() => document.getElementById('nav-toggle').checked = true}
         >
           <svg className="h-6 fill-current" viewBox="0 0 20 20">
             <title>Menu Close</title>
@@ -71,7 +77,7 @@ const Header = () => {
           {main.map((menu, i) => (
             <React.Fragment key={`menu-${i}`}>
               {menu.hasChildren ? (
-                <li className="nav-item nav-dropdown group relative">
+                <li className="nav-item nav-dropdown group relative lg:hidden">
                   <span
                     className={`nav-link inline-flex items-center ${
                       menu.children?.map(({ url }) => url).includes(pathname) ||
@@ -97,6 +103,7 @@ const Header = () => {
                               pathname === child.url) &&
                             "active"
                           }`}
+                          onClick={() => document.getElementById('nav-toggle').checked = false}
                         >
                           {child.name}
                         </Link>
@@ -112,6 +119,7 @@ const Header = () => {
                       (pathname === `${menu.url}/` || pathname === menu.url) &&
                       "active"
                     }`}
+                    onClick={() => document.getElementById('nav-toggle').checked = false}
                   >
                     {menu.name}
                   </Link>
@@ -140,7 +148,6 @@ const Header = () => {
               <IoSearch />
             </Link>
           )}
-          <ThemeSwitcher className="mr-5" />
           {navigation_button.enable && (
             <Link
               className="btn btn-outline-primary btn-sm hidden lg:inline-block"
