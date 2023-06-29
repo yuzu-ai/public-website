@@ -90,7 +90,7 @@ $$
 
 where we have complicated things a bit by adding a home-field advantage parameter $$\alpha$$ that enhances model $$i$$'s strength. In this context the home-field advantage is any bias the reviewer might have towards or against the model that is shown to it first. We always order match pairs $$(i, j)$$ with $$i$$ as the home team.
 
-We now want to fit for the vector of model strength $$\vec{\beta}$$ given our data. We can define the data vector $$\vec{d}$$ as a vector that contains an entry for each match: 1 if the home team wins or 0 if the home team loses. Then the probability of getting our exact data vector given a set of model parameters $$(\alpha, \vec{\beta})$$ is just the product over every match of $$p_{ij}$$ if the home team won the match, or $$(1-p_{ij})$$ if the home team lost. This is the likelihood
+We now want to fit for the vector of model strengths $$\vec{\beta}$$ given our data. We can define the data vector $$\vec{d}$$ as a vector that contains an entry for each match: 1 if the home team wins or 0 if the home team loses. Then the probability of getting our exact data vector given a set of model parameters $$(\alpha, \vec{\beta})$$ is just the product over every match of $$p_{ij}$$ if the home team won the match, or $$(1-p_{ij})$$ if the home team lost. This is the likelihood
 
 $$
 \textrm{Likelihood}(\alpha, \vec{\beta}) = \prod_{\textrm{matches}} p_{ij}^d \times (1-p_{ij})^{1-d}
