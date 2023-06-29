@@ -1,7 +1,7 @@
 ---
 title: "The Rakuda Benchmark"
 description: "Introducing a new way to rank AI Assistants in Japanese"
-date: 2023-06-23T05:00:00Z
+date: 2023-06-29T05:00:00Z
 image: "/images/blog-yuzu-tokyo-tower.jpeg"
 categories: ["research"]
 author: "Sam Passaglia"
