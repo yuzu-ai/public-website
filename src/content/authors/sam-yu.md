@@ -9,4 +9,4 @@ social:
   instagram: 
 ---
 
-AI Product Engineer
+AI Solution Engineer
