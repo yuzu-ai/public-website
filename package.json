@@ -1,8 +1,8 @@
 {
-  "name": "nextplate",
+  "name": "YuzuAI.JP",
   "version": "1.2.1",
-  "description": "Nextjs and Tailwindcss boilerplate",
-  "author": "zeon.studio",
+  "description": "YuzuAI public website",
+  "author": "YuzuAI",
   "license": "MIT",
   "packageManager": "yarn@1.22.19",
   "scripts": {
