@@ -1,6 +1,6 @@
 # YuzuAI Public Website
 
-## 🚀 Getting Started
+## 🚀 Getting Started 
 
 ### 📦 Dependencies
 
