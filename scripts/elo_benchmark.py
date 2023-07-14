@@ -27,7 +27,7 @@ def make_clickable_model(model_name):
     return model_hyperlink(link, model_name)
 
 
-def convert_to_markdown(json_file, strength_fig_file, win_rate_fig_file, template_file, markdown_file):
+def convert_to_markdown(json_file, strength_fig_file, template_file, markdown_file):
     with open(json_file, "r") as f:
         last_line = f.readlines()[-1]
         data = json.loads(last_line)
@@ -45,8 +45,6 @@ def convert_to_markdown(json_file, strength_fig_file, win_rate_fig_file, templat
 
     template = template.replace("$STRENGTH_CHART$", strength_fig_file)
 
-    template = template.replace("$WIN_RATE_CHART$", win_rate_fig_file)
-
     template = template.replace(
         "$DATE$", str(datetime.fromisoformat(data["date"]).date())
     )
@@ -61,8 +59,7 @@ def convert_to_markdown(json_file, strength_fig_file, win_rate_fig_file, templat
 if __name__ == "__main__":
     convert_to_markdown(
         "./src/content/pages/registry.jsonl",
-        "/images/blog/rakuda/rakuda_v1_gpt4ranking.png",
-        "/images/blog/rakuda/rakuda_v1_gpt4winrate.png",
+        "/images/charts/rakuda_v1_gpt4ranking.png",
         "./src/content/pages/benchmark-template.md",
         "./src/content/pages/benchmark.md",
     )
