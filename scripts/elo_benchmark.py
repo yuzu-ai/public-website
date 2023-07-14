@@ -10,12 +10,19 @@ def model_hyperlink(link, model_name):
 def make_clickable_model(model_name):
     link = f"https://huggingface.co/{model_name}"
 
-    # Can also hardcode urls and names here
+    # Can hardcode urls and names here
     if "gpt-3.5-turbo" in model_name:
         link = "https://openai.com/"
-        model_name = "GPT-3.5"
-
-    # model_name = model_name.split('/')[-1].replace('-', ' ')
+        model_name = "openai/GPT-3.5"
+    elif "gpt-4" in model_name:
+        link = "https://openai.com/"
+        model_name = "openai/GPT-4"
+    elif "super-torin" in model_name:
+        link = "https://ai-novel.com/index.php"
+        model_name = "ainovelist/super-torin"
+    elif "rwkv" in model_name:
+        link = "https://huggingface.co/BlinkDL/rwkv-4-world"
+        model_name = "blinkdl/rwkv-4-world-jp55"
 
     return model_hyperlink(link, model_name)
 
@@ -26,10 +33,10 @@ def convert_to_markdown(json_file, strength_fig_file, win_rate_fig_file, templat
         data = json.loads(last_line)
 
     rankings = sorted(data["ranking"], key=lambda x: x["median"], reverse=True)
-    table = "| Rank | Model | Strength | Win Rate | Stronger than the next model at confidence level  | \n| :--- | :---: | :---: | :---: | :---: |\n"
+    table = "| Rank | Model | Strength | Stronger than the next model at confidence level  | \n| :--- | :---: | :---: | :---: |\n"
     for i, rank in enumerate(rankings):
         # assert(round(rank['one_sigma_up'],2) == round(rank['one_sigma_down'],2))
-        table += f"| {i+1} | {make_clickable_model(rank['model_id'])} | {rank['median']:.3f} ± {rank['one_sigma_up']:.2f}  | {rank['win_rate']:.0%} | { str(round(rank['stronger_than_next_confidence']*100,1))+'%' if rank['stronger_than_next_confidence']!=0 else 'N/A'}\n"
+        table += f"| {i+1} | {make_clickable_model(rank['model_id'])} | {rank['median']:.3f} ± {rank['one_sigma_up']:.2f} | { str(round(rank['stronger_than_next_confidence']*100,1))+'%' if rank['stronger_than_next_confidence']>0 else 'N/A'}\n"
 
     with open(template_file, "r") as f:
         template = f.read()
@@ -54,10 +61,8 @@ def convert_to_markdown(json_file, strength_fig_file, win_rate_fig_file, templat
 if __name__ == "__main__":
     convert_to_markdown(
         "./src/content/pages/registry.jsonl",
-        # "./src/images/rakuda/strengths.png",
-        # "./src/images/rakuda/winrates.png",
-        "/images/blog/rakuda/rakuda_v1ranking.png",
-        "/images/blog/rakuda/rakuda_v1winrate.png",
+        "/images/blog/rakuda/rakuda_v1_gpt4ranking.png",
+        "/images/blog/rakuda/rakuda_v1_gpt4winrate.png",
         "./src/content/pages/benchmark-template.md",
         "./src/content/pages/benchmark.md",
     )
