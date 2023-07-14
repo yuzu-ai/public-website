@@ -19,7 +19,7 @@ def make_clickable_model(model_name):
         model_name = "openai/GPT-4"
     elif "super-torin" in model_name:
         link = "https://ai-novel.com/index.php"
-        model_name = "ainovelist/super-torin"
+        model_name = "ainovelist/supertrin"
     elif "rwkv" in model_name:
         link = "https://huggingface.co/BlinkDL/rwkv-4-world"
         model_name = "blinkdl/rwkv-4-world-jp55"
