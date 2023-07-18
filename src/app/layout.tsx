@@ -54,7 +54,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-
+      
       <body suppressHydrationWarning={true}>
         <TwSizeIndicator />
         <Providers>

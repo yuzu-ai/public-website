@@ -3,7 +3,6 @@ import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 import SeoMeta from "@/partials/SeoMeta";
 import { Button, Feature } from "@/types";
-import { GoogleAnalytics } from "nextjs-google-analytics";
 
 const Home = () => {
   const homepage = getListPage("_index.md");
@@ -18,25 +17,10 @@ const Home = () => {
 
   return (
     <>
-      <GoogleAnalytics trackPageViews gaMeasurementId="G-B3WBLPNZFH" />
       <SeoMeta />
       <section className="section pt-14">
         <div className="container">
           <div className="row justify-center">
-            {/* <div className="mb-16 text-center lg:col-7">
-              {banner.image && (
-                <div className="col-12">
-                  <ImageFallback
-                    src={banner.image}
-                    className="mx-auto"
-                    width="600"
-                    height="50"
-                    alt="banner image"
-                    priority
-                  />
-                </div>
-              )}
-            </div> */}
             <div className="mb-4 text-center lg:col-7">
               <h1
                 className="mb-4"
@@ -58,7 +42,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Rest of the code */}
     </>
   );
 };
