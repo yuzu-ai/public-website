@@ -3,6 +3,7 @@ import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 import SeoMeta from "@/partials/SeoMeta";
 import { Button, Feature } from "@/types";
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
 const Home = () => {
   const homepage = getListPage("_index.md");
@@ -17,6 +18,7 @@ const Home = () => {
 
   return (
     <>
+      <GoogleAnalytics trackPageViews gaMeasurementId="G-B3WBLPNZFH" />
       <SeoMeta />
       <section className="section pt-14">
         <div className="container">
