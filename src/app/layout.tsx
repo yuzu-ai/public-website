@@ -5,6 +5,7 @@ import Footer from "@/partials/Footer";
 import Header from "@/partials/Header";
 import Providers from "@/partials/Providers";
 import "@/styles/main.scss";
+import 'katex/dist/katex.min.css';
 
 export default function RootLayout({
   children,
@@ -53,7 +54,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-
+      
       <body suppressHydrationWarning={true}>
         <TwSizeIndicator />
         <Providers>
@@ -62,6 +63,7 @@ export default function RootLayout({
           <Footer />
         </Providers>
       </body>
+
     </html>
   );
 }

@@ -1,5 +1,4 @@
 import BlogCard from "@/components/BlogCard";
-import Disqus from "@/components/Disqus";
 import ImageFallback from "@/components/ImageFallback";
 import MDXContent from "@/components/MDXContent";
 import Share from "@/components/Share";
@@ -61,7 +60,7 @@ const PostSingle = ({ params }: { params: { single: string } }) => {
       <section className="section pt-7">
         <div className="container">
           <div className="row justify-center">
-            <article className="lg:col-10">
+            <article className="lg:col-7">
               {image && (
                 <div className="mb-10">
                   <ImageFallback
@@ -103,7 +102,7 @@ const PostSingle = ({ params }: { params: { single: string } }) => {
                   </li>
                 )}
               </ul>
-              <div className="content mb-10">
+                <div className="content mb-10">
                 <MDXContent content={content} />
               </div>
               <div className="row items-start justify-between">
@@ -132,7 +131,6 @@ const PostSingle = ({ params }: { params: { single: string } }) => {
                   />
                 </div>
               </div>
-              <Disqus className="mt-20" />
             </article>
           </div>
 

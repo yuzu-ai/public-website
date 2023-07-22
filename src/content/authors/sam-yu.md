@@ -1,7 +1,7 @@
 ---
 title: Sam Yu
-email: 
-image: "/images/avatar.png"
+email: samyu@yuzuai.jp
+image: "/images/profiles/sy-1.png"
 description: Sam Yu profile
 social:
   facebook: 
@@ -9,4 +9,4 @@ social:
   instagram: 
 ---
 
-AI Product Engineer
+AI Solution Engineer

@@ -9,7 +9,7 @@
       "url": "/about"
     },
     {
-      "name": "Benchmark",
+      "name": "Rakuda",
       "url": "/benchmark"
     },
     {
@@ -22,9 +22,5 @@
     }
   ],
   "footer": [
-    {
-      "name": "Privacy Policy",
-      "url": "/privacy-policy"
-    }
   ]
 }

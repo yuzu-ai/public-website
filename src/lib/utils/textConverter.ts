@@ -34,6 +34,15 @@ export const plainify = (content: string) => {
   return stripHTML;
 };
 
+export const plainifyWithLineBreaks = (content: string | undefined, summary_length: number) => {
+  if (!content) return "";
+  const planifiedContent = plainify(content);
+  const slicedContent = planifiedContent!.slice(0, Number(summary_length));
+  const lastSpaceIndex = slicedContent.lastIndexOf(" ", summary_length);
+  const summary = slicedContent.slice(0, lastSpaceIndex !== -1 ? lastSpaceIndex : summary_length);
+  return summary + " ...";
+};
+
 // strip entities for plainify
 const htmlEntityDecoder = (htmlWithEntities: string): string => {
   let entityList: { [key: string]: string } = {

@@ -1,49 +1,41 @@
 ---
-title: "Ranking Japanese LLMs"
-meta_title: "Introducing the Rakuda Benchmark"
-description: "Introducing the Rakuda Benchmark"
-date: 2023-06-23T05:00:00Z
+title: "The Rakuda Benchmark"
+description: "Introducing a new way to rank AI Assistants in Japanese"
+date: 2023-06-29T05:00:00Z
 image: "/images/blog-yuzu-tokyo-tower.jpeg"
-categories: ["LLM"]
+categories: ["research"]
 author: "Sam Passaglia"
-tags: ["blog", "japanese", "machine learning", "yuzu-ai"]
+tags: ["rakuda", "evaluation"]
 draft: false
 ---
 
-DRAFT 6/24/13:59pm
-
-```
-{note}
-This post also appears on the [YuzuAI blog](https://yuzuai.jp/), and all of the code and data used to get these results is now available on [github](https://github.com/yuzu-ai/japanese-llm-ranking).
-```
+*Note: All code used in this project is available on [github](https://github.com/yuzu-ai/japanese-llm-ranking).*
 
 The open-source community has been hard at work trying to catch up to closed Large Language Models like ChatGPT. Open models --- models whose insides are released publicly --- are important because they enable AI research and development outside of the control of large corporations.
 
 In English, the best open models are now at roughly the level of the GPT-3.5 model that powers the free tier of ChatGPT. The Japanese performance of open models seems to lag behind, however, and the Japanese open-source community is not as active as the community in the West. Nonetheless the past couple months have seen the release of a [3.6-billion parameter model](https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo) by [rinna](https://rinna.co.jp/) and the 7-billion parameter [open-calm](https://huggingface.co/cyberagent/open-calm-7b) model by [CyberAgent](https://www.cyberagent.co.jp/), both trained exclusively on Japanese text.
 
-How good are open-source models in Japanese, and how do they compare to the [strong Japanese performance of ChatGPT](https://passaglia.jp/gpt-japanese/)? And within the open-source space, how do large models trained primarily in English compare to models which are smaller but which focus their training and architectures on Japanese?
+How good are open-source models in Japanese, and how do they compare to the [strong Japanese performance of ChatGPT](https://passaglia.jp/gpt-japanese/)? And within the open-source space, how do large models trained primarily in English compare to models which are smaller but which focus their training and tokenization architectures on Japanese?
 
-To answer these questions, we introduce here the **Rakuda** benchmark and ranking for Japanese AI assistants. Read on for details about how it works, or head directly to [the leaderboard](https://yuzuai.jp/benchmark) to see how the first 6 competitors stack up!
+To answer these questions, we introduce here the **Rakuda** benchmark and ranking for Japanese AI assistants. Read on for details about how it works, or head directly to [the leaderboard](/benchmark) to see how the first 6 competitors stack up!
 
 # The Rakuda Benchmark
 
-One powerful way to test an LLM is to ask it questions to which you know the answer. This is the approach taken by many popular benchmarks like the Japanese General Language Understanding Evaluation ([JGLUE](https://github.com/yahoojapan/JGLUE)) or the Massive Multitask Language Understanding ([MMLU](https://github.com/hendrycks/test)) test. In order to measure a model's performance on these questions unambiguously, these benchmarks are often designed as multiple choice tests.
+One powerful way to test an LLM is to ask it questions to which you know the answer. This is the approach taken by many popular benchmarks like the Japanese General Language Understanding Evaluation ([JGLUE](https://github.com/yahoojapan/JGLUE)). In order to measure a model's performance on these questions unambiguously, these benchmarks are often designed as multiple choice tests. For a ranking of models on JGLUE, see this [StabilityAI fork of EleutherAI's lm-evaluation-harness](https://github.com/Stability-AI/lm-evaluation-harness/tree/jp-stable).
 
-But LLMs are capable of much more than answering multiple choice questions. ChatGPT and similar models can write detailed, reasoned, and pertinent responses to open-ended questions without clear right or wrong answers. The performance of these AI assistants is defined by how useful they are to their users, and we would like to measure that usefulness.
+But LLMs are capable of much more than answering multiple choice questions. ChatGPT and similar models can write detailed, reasoned, and pertinent responses to open-ended questions. The performance of these AI assistants is defined not by a clear-cut right-or-wrong benchmark but by how useful they are to their users, and we would like to measure that usefulness.
 
-One way to do that is to simply ask users directly. This is the approach taken by LMSYS's [Chatbot Arena](https://lmsys.org/blog/2023-05-03-arena/). They provide a [web interface](https://chat.lmsys.org/?arena) where users can input questions, just like they would to ChatGPT, and LMSYS serves them back answers generated by two different AI assistants. The user is asked to decide which answer is better, and based on users' preferences LMSYS creates an [LLM leaderboard](https://chat.lmsys.org/?leaderboard).
-
-![A ranking of AI assistants from https://chat.lmsys.org/?leaderboard](./src/posts/2023-06-25-rakuda-benchmark/lmsys_leaderboard.png)
+One way to measure usefulness is to simply ask users directly. This is the approach taken by LMSYS's [Chatbot Arena](https://lmsys.org/blog/2023-05-03-arena/). They provide a [web interface](https://chat.lmsys.org/?arena) where users can input questions, just like they would to ChatGPT, and LMSYS serves them back answers generated by two different AI assistants. The user is asked to decide which answer is better, and based on users' preferences LMSYS creates an [LLM leaderboard](https://chat.lmsys.org/?leaderboard).
 
 We'll talk more about just how to create such a ranking down below, but in the meantime it's important to understand that this approach is in some ways very easy, because you don't need to come up with a list of questions and answers yourself, and in other ways hard, because you have to serve models reliably and quickly to users on-demand.
 
-A simpler approach is to come up with a set of questions yourself and then judge models' responses to these questions against each other. Since the question list is fixed, you can generate all the answers at once and you don't have to serve any models to users over the internet. You still don't need to specify answers to the questions, because you'll just compare models' responses against each other rather than against some ground truth. And the questions you use can be open-ended and admit a wide range of possible answers, and they can be designed to test exactly the skills you're interesting in.
+A simpler approach is to come up with a list of questions yourself. Since the question list is fixed, you can generate all the answers at once and you don't have to serve any models to users over the internet. You still don't need to specify answers to the questions, because you can still just compare models' responses against each other rather than against some ground truth. The questions can be open-ended and admit a wide range of possible answers, and they can be designed to test exactly the skills you're interesting in.
 
-Benchmarks and rankings based on open-ended question lists have proven incredibly useful in stimulating open-source development. Benchmarks based on the [Vicuna list](https://lmsys.org/vicuna_eval/) are used in many papers, and Huggingface uses such a list to produce its [LLM assistant leaderboard](https://huggingface.co/spaces/HuggingFaceH4/human_eval_llm_leaderboard). But so far there has been no such a list for Japanese.
+Benchmarks and rankings based on open-ended question lists have proven incredibly useful in stimulating open-source development. Benchmarks based on the [Vicuna list](https://lmsys.org/vicuna_eval/) are used in many papers, and Huggingface uses a similar list to produce its [LLM assistant leaderboard](https://huggingface.co/spaces/HuggingFaceH4/human_eval_llm_leaderboard). But so far there has been no such benchmark for Japanese.
 
-That's why we designed **Rakuda**, the first question set designed to evaluate how well AI Assistants can solve Japanese-specific tasks, and we're releasing it to the public as a [dataset on Huggingface](https://huggingface.co/datasets/yuzuai/rakuda-questions).
+That's why we designed **Rakuda**, the first question set designed to evaluate how well AI Assistants can answer Japanese-specific questions. We're releasing it to the public as a [dataset on Huggingface](https://huggingface.co/datasets/yuzuai/rakuda-questions).
 
-**Rakuda** contains 40 questions in Japanese about Japanese history, society, government, and geography. Questions in the first three categories are open-ended, while the geography questions are more specific. Here's an example question from each category
+**Rakuda** contains 40 questions in Japanese about Japanese history, society, government, and geography, and most questions admit a wide range of possible answers. Here's an example question from each category
 
 ```
 ## Rakuda questions
@@ -66,15 +58,15 @@ That's why we designed **Rakuda**, the first question set designed to evaluate h
 #            and what was it primarily used for?
 ```
 
-We got these questions by asking ChatGPT-4 to generate useful questions to evaluate Japanese high-school students. We kept the ChatGPT-4 outputs we liked, removed questions we thought were bad, and lightly edited some for clarity.
+We got these by asking ChatGPT-4 to generate useful questions to evaluate Japanese high-school students. We kept the ChatGPT-4 outputs we liked, removed questions we thought were bad, and lightly edited some for clarity.
 
 # Evaluating and Ranking Models on Rakuda
 
-**Rakuda** does not contain answers to the questions, which are designed to be open ended and admit many possible answers. Models are evaluated by generating answers to the questions and then comparing their answers against each other.
+**Rakuda** does not contain an answer key. Models are evaluated by generating answers to the questions and then comparing their answers against each other.
 
-Ideally we would get humans reviewers to do these comparisons, looking at two models' outputs to the same question and deciding which is better. But doing all pairwise combinations for 6 LLMs on 40 questions would take 6x5x40 = 1200 reviews (we want to compare model answers in both A-B and B-A orderings to eliminate any primacy bias of the reviewers). That's a lot of work, so instead we ask the best LLM we have access to, GPT-3.5, to do the reviewing. We can do this because [a recent paper](https://arxiv.org/abs/2306.05685) showed that reviews by GPT-3.5 agree with human reviewers 83% of the time. GPT-4 does even better, so please contact us if you have API access to GPT-4 and would be willing to help us use it to improve our benchmark.
+Ideally we would get humans reviewers to do these comparisons, looking at two models' outputs to the same question and deciding which answer is better. But doing all pairwise combinations for 6 LLMs on 40 questions would take 6x5x40 = 1200 reviews (we want to compare outputs in both A-B and B-A orderings to eliminate any primacy bias of the reviewers). That's a lot of work for a human, so instead we ask the best LLM we have access to, GPT-3.5, to do the reviewing. We can do this because [a recent paper](https://arxiv.org/abs/2306.05685) showed that GPT-3.5 agrees with human reviewers 83% of the time. GPT-4 does even better, so please contact us if you have API access to GPT-4 and would be willing to help us improve our benchmark.
 
-We send GPT-3 a question from the Rakuda list and two different answers to it and ask it to choose which is better. We also allow it to choose a draw, but it doesn't do so very often. We do this for all possible model match-ups for every question and end up with a long table that looks like
+We send GPT-3.5 a question from the Rakuda list and ask it to choose which of two answers is better. We also allow it to choose a draw, but it doesn't do so very often. We do this for all possible model match-ups for every question and end up with a long table that looks like
 
 ```bash
 model_1    | model_2   | winner
@@ -86,51 +78,75 @@ rinna-3.6b | open-calm | 2
 (1200 rows)
 ```
 
-The distribution of reviews is...
+To turn this list of pairwise results into a model ranking, perhaps the simplest thing we could do is to rank models based on their win rate across all matches. If all models play the same number of matches against the same opponents, then their win rate is probably the closest thing to their 'true' strengths.
 
-TODO: PLOT HERE OF REVIEW DISTRIBUTION
+But we would also like to be able to compute a ranking when these conditions are violated. Since computing all pairwise combinations for $$N$$ models requires $$\mathcal{O}(N^2)$$ matches, computing every pairwise combination will rapidly become intractable. Moreover as we add new models to our ranking, we would like to estimate their strength before they've played every other model many times. To do that we need a mathematical model that can predict the outcome of a match between opponents that have never played each other.
 
-and we see that the reviewer (GPT-3) has a slight bias towards picking the second answer that it is shown. Since every model gets shown just as often in position 1 as in position 2, this won't bias our results.
+The [Bradley-Terry model](https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model) is one way to do that. It models one-on-one competitions by assigning to every competitor $$i$$ (in our case a Japanese LLM) a  **strength parameter** $$\beta_i$$. It then assumes that the probability that competitor $$i$$ beats competitor $$j$$ in a match just depends on their relative strength $$\beta_i - \beta_j$$. A commonly used form for that probability is
 
-Once we have this list of matches and results, we want to make a ranking based on which models our reviewer prefers. By making a ranking we are assuming that our reviewer's preferences define a [total ordering](https://en.wikipedia.org/wiki/Total_order) on the set of model outputs. In particular we assume that match results are distributed according to the [Bradley-Terry model](https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model).
+$$
+p_{ij} \equiv \textrm{Probability} ( i \textrm{ beats } j) = \dfrac{e^{\alpha + \beta_i - \beta_j}}{1 + e^{\alpha + \beta_i - \beta_j} }
+$$
 
-The Bradley-Terry model is a way of modeling paired competitions. It says that every competitor $$i$$ (in our case a Japanese LLM) is defined by a single **strength** parameter $$\beta_i$$, and the probability of
-victory of competitor $$i$$ in a match against competitor $$j$$ just depends on their relative strength $$\beta_i - \beta_j$$. In particular a commonly used form for the victory probability is
+where we have complicated things a bit by adding a home-field advantage parameter $$\alpha$$ that enhances model $$i$$'s strength. In this context the home-field advantage is any bias the reviewer might have towards or against the model that is shown to it first. We always order match pairs $$(i, j)$$ with $$i$$ as the home team.
 
-$$ p\_{ij} \equiv \textrm{Probability} ( i \textrm{ beats } j) = \dfrac{e^{\alpha + \beta_i - \beta_j}}{1 + e^{\alpha + \beta_i - \beta_j} } $$,
+We now want to fit for the vector of model strengths $$\vec{\beta}$$ given our data. We can define the data vector $$\vec{d}$$ as a vector that contains an entry for each match: 1 if the home team wins or 0 if the home team loses. Then the probability of getting our exact data vector given a set of model parameters $$(\alpha, \vec{\beta})$$ is just the product over every match of $$p_{ij}$$ if the home team won the match, or $$(1-p_{ij})$$ if the home team lost. This is the likelihood
 
-where $$\alpha$$ is a home-field advantage parameter that enhances model $$i$$'s strength. To use it we always order match pairs $$(i, j)$$ with $$i$$ as the home team.
+$$
+\textrm{Likelihood}(\alpha, \vec{\beta}) = \prod_{\textrm{matches}} p_{ij}^d \times (1-p_{ij})^{1-d}
+$$
 
-We can define our data vector $$\vec{Y}$$ as a vector that contains an entry for each match: 0 if the home team loses the match or 1 if the home team wins. Then the probability of getting our exact data-vector given a set of model parameters $$(\alpha, \vec{\beta})$$ is just the product over every match of $$p_{ij}$$ if the home-team model won the match, or $$(1-p_{ij})$$ if the home team lost. This is the likelihood
+The best fit parameters are those which maximize the likelihood. This maximization is very easy to do in python with scipy's [optimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html) library. A couple technical points: first, we deal with draws by counting them as a half-win for each team. Second, because winning probabilities are controlled only by relative model strengths, a constant can be added or subtracted to all model strengths without changing the likelihood. We fix this gauge freedom by imposing that the model strengths all add up to zero.
 
-$$ \textrm{Likelihood}(\alpha, \vec{\beta}) = \prod*{\textrm{matches}} p*{ij}^Y \times (1-p\_{ij})^{1-Y} $$
+Once we have the best-fit model strengths, we would like to know their uncertainties. In our Bayesian framework, the uncertainties are related to the shape of the posterior probability distribution of the parameters, which is proportional to the likelihood times the prior probability of the parameters. There are many ways to estimate the posterior probability distribution, but the one that requires the least amount of brain power is certainly [Markov chain Monte Carlo](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo).
 
-The best fit parameters -- including the best fit model strengths -- are those which maximize the likelihood. This maximization is very easy to do in python with scipy's optimize function. A couple technical points: first, we deal with draws by counting them as a half-win for each team. Second, because winning probabilities are controlled only by relative model strengths, a constant can be added or subtracted to all model strengths without changing the likelihood. We fix this gauge freedom by imposing that the model strengths all add up to zero.
+MCMC is an easy way to sample from high-dimensional distributions, and in Bayesian statistics it is used to sample from the posterior distribution. How far the samples stray from the best-fit points tells us the parameter uncertainties. MCMC is very straightforward to implement using the [emcee](https://emcee.readthedocs.io/en/stable/tutorials/line/) package. See [Hogg et al](https://arxiv.org/abs/1008.4686) for a primer on Bayesian analysis.
 
-After getting the best-fit model strengths, we want to know their uncertainties. There are many ways to do this, but the one that requires the lowest brain power is certainly [Markov chain Monte Carlo](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo). In our Bayesian framework, the uncertainties are related to the shape of the posterior probability distribution of the parameters, which is proportional to the likelihood times the prior probability of the parameters. MCMC is an easy way to sample points from the posterior, and how far the samples stray from the best-fit points tells us the parameter uncertainties. This all might sound a bit complicated, but it's very straightforward to implement using the [emcee](https://emcee.readthedocs.io/en/stable/tutorials/line/) package.
-
-Finally, a note about Elo scores. Elo scores are another commonly used system to rank the relative skill of players in zero-sum competitions. In fact, they are based on the same underlying Bradley-Terry model we use here. The difference lies only in how the player strengths are actually computed from the data. In the Elo system, player's scores are gradually updated as they play matches based on their pre-match Elo score and the Elo score of their opponents. This is popular with players and spectators because they can easily calculate the exact impact a win or loss will have on their score. But from a parameter estimation standpoint it is sub-optimal and will only slowly approach the maximum likelihood values. If you have access to a computer, better to take the Bayesian approach and fit all strengths and all matches at once as we've done here.
+Before we go on to the results, first a note about Elo scores. Elo scores are another commonly used way to rank the relative skill of players in zero-sum competitions. In fact, they are based on the same underlying Bradley-Terry model we use here. The difference lies in how the player strengths are actually estimated from the data. In the Elo system, scores are gradually updated match-by-match based on the match result and the pre-match Elo scores of the competitors. This is popular with players because they can easily calculate the exact impact a win or loss will have on their score. But from a parameter estimation standpoint it is sub-optimal and will only slowly approach the maximum likelihood values. If you have access to a computer, better to take the Bayesian approach and fit all strengths based on all matches all at once, as we've done here.
 
 # The Rakuda Leaderboard
 
-For our initial release we include 6 models
+For our initial release we run our benchmark with 6 models. These are:
 
-- GPT-3.5 (OpenAI): This is the best model in the ranking and also the model we use as a reviewer. We might worry that as a reviewer GPT-3.5 is biased towards its own
-- Open-Calm and stormy
-- Rinna-ppo, sft-v2, and base.
+* [**GPT-3.5**](https://openai.com/) (OpenAI): This is the best model in the ranking and also the model we use as a reviewer. We might worry that as a reviewer GPT-3.5 is biased towards its own answers, but GPT-3.5 is so unambiguously better than other models that such biases are not a major concern.
 
-All data - generations, reviews, etc is on the github. The home-field advantage parameter is ... which means that if two teams of the same strength face each other the one presented first to the reviewer will win X percent of the time.
+- [**open-calm-7b**](https://huggingface.co/cyberagent/open-calm-7b) (CyberAgent) and [**stormy-7b-10ep**](https://huggingface.co/izumi-lab/stormy-7b-10ep) (Izumi-Lab): open-calm is a 7-billion parameter base model trained by CyberAgent on a Japanese corpus. stormy-7b-10ep is a version of open-calm fine-tuned on [a large set of question-answer pairs](https://huggingface.co/datasets/izumi-lab/llm-japanese-dataset) by [University of Tokyo researchers](https://llm.msuzuki.me/). To try to induce open-calm-7b to give helpful answers, we prompt it to be an assistant.
 
-The best fit parameters are
+* [**japanese-gpt-neox-3.6b**](https://huggingface.co/rinna/japanese-gpt-neox-3.6b), [**japanese-gpt-neox-3.6b-sft-v2**](https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft-v2), and [**japanese-gpt-neox-3.6b-ppo**](https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-pp) (rinna): These models are trained by the rinna corporation and for conciseness we will refer to them as **rinna-3.6b**, **rinna-3.6b-sft**, and **rinna-3.6b-ppo**. rinna-3.6b is the base model, while rinna-3.6b-sft is instruction fine-tuned. rinna-3.6-ppo is further trained with proximal policy optimization, a reinforcement learning technique. Again we prompt the base model to try to get it to assist the user.
 
-TODO: Plot here of parameters
+We get each of these models to answer all the **Rakuda** questions and then ask GPT-3.5 to judge all the answers against each other. These answers and reviews are all in the [github repository](https://github.com/yuzu-ai/japanese-llm-ranking/). We find the following win rates for each model:
 
-The uncertainties are correlated, but with MCMC chains we can make statements like ...
+![Win rates of AI assistants on the Rakuda benchmark](/images/blog/rakuda/rakuda_v1winrate.png)
 
-TODO: Plot here explaining the uncertainty: grid or just compare models to next model in ranking
+We then use MCMC to estimate the Bradley-Terry parameters and their uncertainties. See [this notebook](https://github.com/yuzu-ai/japanese-llm-ranking/blob/main/jrank/bradley-terry.ipynb) for the calculation. We find the following strengths:
 
-Discussion about future plans...
+![Bradley-Terry strengths of AI assistants on the Rakuda benchmark](/images/blog/rakuda/rakuda_v1ranking.png)
 
-If you have any models you'll like us to add just let us know.
+We find that both the overall win-rates and the Bradley-Terry strengths show the same qualitative features. GPT-3.5 is far and away the best Japanese AI assistant among the models we tested. Among the open models, open-calm takes the lead. This is surprising since open-calm-7b is a base model, not an instruction-tuned Assistant. An instruction-tuned model based on open-calm, stormy-7b, takes the next rung of our ranking.
 
-but they will continuously updated on the main page https://yuzuai.jp/benchmark .
+One of the advantages of the Bradley-Terry approach is that it allows us to quantify how statistically confident we are in our statement that our reviewer (GPT-3.5) prefers open-calm-7b to stormy-7b. By plotting the MCMC samples, we can trace out the posterior distribution for their relative strength. This automatically marginalizes over nuisance parameters like the home-field advantage parameter $$\alpha$$.
+
+!["Relative strength of open-calm-7b and stormy-7b"](/images/blog/rakuda/rakuda_v1diff.png)
+
+The MCMC results show that open-calm-7b is preferred to stormy-7b at the 98.7% confidence level. This suggests that the instruction dataset used to fine-tune stormy-7b does not produce an assistant more helpful in the eyes of the reviewer.
+
+Here are our full results as a table:
+
+| Rank | Model | Strength | Win Rate | Stronger than the next model at confidence level  | 
+| :--- | :---: | :---: | :---: | :---: |
+| 1 | <a target="_blank" href="https://openai.com/" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>GPT-3.5</a> | 2.487 ± 0.19  | 94% | 100.0%
+| 2 | <a target="_blank" href="https://huggingface.co/cyberagent/open-calm-7b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>cyberagent/open-calm-7b</a> | -0.063 ± 0.10  | 52% | 98.6%
+| 3 | <a target="_blank" href="https://huggingface.co/izumi-lab/stormy-7b-10ep" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>izumi-lab/stormy-7b-10ep</a> | -0.384 ± 0.10  | 44% | 90.7%
+| 4 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b-instruction-ppo</a> | -0.575 ± 0.10  | 39% | 83.6%
+| 5 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft-v2" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b-instruction-sft-v2</a> | -0.717 ± 0.10  | 36% | 59.0%
+| 6 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b</a> | -0.750 ± 0.10  | 35% | N/A
+
+We also find a home-field advantage parameter $$\alpha = -0.524 \pm 0.07$$. The model strengths and home-field advantage parameter can be used to predict the outcome of any matchup between these models by using the Bradley-Terry probability formula in the previous section.
+
+# Parting words
+
+We hope that the Rakuda benchmark and leaderboard will stimulate the development of better and more useful open-source LLMs for Japanese. If you have any model you'd like to add to the leaderboard, or any ideas for how to improve Rakuda, please open an issue on the github repository or contact me directly on Twitter [@SamPassaglia](https://twitter.com/SamPassaglia) or on the [YuzuAI discord](https://discord.com/invite/bHB9e2rq2r). As we add models, we will continuously update [the main benchmark page](/benchmark).
+
+
+
+

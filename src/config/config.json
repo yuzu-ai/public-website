@@ -5,8 +5,8 @@
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
-    "logo": "/images/Yuzu_AI-logo-v1.png",
-    "logo_darkmode": "/images/logo-darkmode.png",
+    "logo": "/images/yuzu-logo-v2.png",
+    "logo_darkmode": "/images/yuzu-logo-v2.png",
     "logo_width": "150",
     "logo_height": "150",
     "logo_text": "YuzuAI"
@@ -14,7 +14,7 @@
 
   "settings": {
     "search": false,
-    "sticky_header": true,
+    "sticky_header": false,
     "theme_switcher": true,
     "default_theme": "system",
     "pagination": 2,
@@ -40,8 +40,8 @@
   },
 
   "metadata": {
-    "meta_author": "Themefisher",
-    "meta_image": "/images/og-image.png",
-    "meta_description": "Next Boilerplate"
+    "meta_author": "YuzuAI",
+    "meta_image": "/images/blog-yuzu-tokyo-tower.jpeg",
+    "meta_description": "Open-Source Research for Japanese LLMs"
   }
 }

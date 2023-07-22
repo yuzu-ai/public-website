@@ -1,6 +1,6 @@
 # YuzuAI Public Website
 
-## 🚀 Getting Started
+## 🚀 Getting Started 
 
 ### 📦 Dependencies
 
@@ -30,3 +30,10 @@ yarn run build
 - Add your profile image to `public/images/` directory, remember the file name.
 - Change url in `src/content/authors/` directory, the file name should be your name.
 - If any information field is left blank, then it will not be displayed on the website.
+
+### Blog Image
+
+Blog image should be added to `public/images/blog` directory, remember the filepath. It's recommended to have a folder for each blog post to better file management. When invoke these images, format as follows:
+```
+![Image Title](/images/blog/post/image.png)
+```
