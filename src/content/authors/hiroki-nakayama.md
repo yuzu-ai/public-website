@@ -1,8 +1,8 @@
 ---
-title: Hiroki Nakayama
+title: hiroki
 email:
-image: "/images/profiles/hn-1.jpg"
-description: Hiroki Nakayama profile
+image: "/images/profiles/hn-shiba-1.png"
+description: hiroki profile
 social:
   facebook:
   twitter:
