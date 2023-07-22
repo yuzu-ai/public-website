@@ -1,7 +1,7 @@
 ---
 title: "The Rakuda Benchmark"
 description: "Introducing a new way to rank AI Assistants in Japanese"
-date: 2023-06-23T05:00:00Z
+date: 2023-06-29T05:00:00Z
 image: "/images/blog-yuzu-tokyo-tower.jpeg"
 categories: ["research"]
 author: "Sam Passaglia"
@@ -90,7 +90,7 @@ $$
 
 where we have complicated things a bit by adding a home-field advantage parameter $$\alpha$$ that enhances model $$i$$'s strength. In this context the home-field advantage is any bias the reviewer might have towards or against the model that is shown to it first. We always order match pairs $$(i, j)$$ with $$i$$ as the home team.
 
-We now want to fit for the vector of model strength $$\vec{\beta}$$ given our data. We can define the data vector $$\vec{d}$$ as a vector that contains an entry for each match: 1 if the home team wins or 0 if the home team loses. Then the probability of getting our exact data vector given a set of model parameters $$(\alpha, \vec{\beta})$$ is just the product over every match of $$p_{ij}$$ if the home team won the match, or $$(1-p_{ij})$$ if the home team lost. This is the likelihood
+We now want to fit for the vector of model strengths $$\vec{\beta}$$ given our data. We can define the data vector $$\vec{d}$$ as a vector that contains an entry for each match: 1 if the home team wins or 0 if the home team loses. Then the probability of getting our exact data vector given a set of model parameters $$(\alpha, \vec{\beta})$$ is just the product over every match of $$p_{ij}$$ if the home team won the match, or $$(1-p_{ij})$$ if the home team lost. This is the likelihood
 
 $$
 \textrm{Likelihood}(\alpha, \vec{\beta}) = \prod_{\textrm{matches}} p_{ij}^d \times (1-p_{ij})^{1-d}
@@ -141,11 +141,11 @@ Here are our full results as a table:
 | 5 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft-v2" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b-instruction-sft-v2</a> | -0.717 ± 0.10  | 36% | 59.0%
 | 6 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b</a> | -0.750 ± 0.10  | 35% | N/A
 
-We also find a home-field advantage parameter $$\alpha = -0.524 \pm 0.07$$. With the model strengths and home-field advantage parameter here, the outcome of any matchup between these models can be predicted with the Bradley-Terry probability formula in the previous section.
+We also find a home-field advantage parameter $$\alpha = -0.524 \pm 0.07$$. The model strengths and home-field advantage parameter can be used to predict the outcome of any matchup between these models by using the Bradley-Terry probability formula in the previous section.
 
 # Parting words
 
-We hope that the Rakuda benchmark and leaderboard will stimulate the development of better and more useful open-source LLMs for Japanese. If you have any model you'd like to add to the leaderboard, or any ideas for how to improve Rakuda, please open an issue on the github repository or contact me directly on twitter [@SamPassaglia](https://twitter.com/SamPassaglia) or on the [YuzuAI discord](https://discord.com/invite/bHB9e2rq2r). As we add models, we will continuously update [the main benchmark page](/benchmark).
+We hope that the Rakuda benchmark and leaderboard will stimulate the development of better and more useful open-source LLMs for Japanese. If you have any model you'd like to add to the leaderboard, or any ideas for how to improve Rakuda, please open an issue on the github repository or contact me directly on Twitter [@SamPassaglia](https://twitter.com/SamPassaglia) or on the [YuzuAI discord](https://discord.com/invite/bHB9e2rq2r). As we add models, we will continuously update [the main benchmark page](/benchmark).
 
 
 

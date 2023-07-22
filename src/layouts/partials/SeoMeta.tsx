@@ -3,6 +3,7 @@
 import config from "@/config/config.json";
 import { plainify } from "@/lib/utils/textConverter";
 import { usePathname } from "next/navigation";
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
 const SeoMeta = ({
   title,
@@ -25,6 +26,7 @@ const SeoMeta = ({
 
   return (
     <>
+      <GoogleAnalytics trackPageViews gaMeasurementId="G-B3WBLPNZFH" />
       {/* title */}
       <title>
         {plainify(meta_title ? meta_title : title ? title : config.site.title)}

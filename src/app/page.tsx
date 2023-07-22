@@ -3,7 +3,6 @@ import { getListPage } from "@/lib/contentParser";
 import { markdownify } from "@/lib/utils/textConverter";
 import SeoMeta from "@/partials/SeoMeta";
 import { Button, Feature } from "@/types";
-import { FaCheck } from "react-icons/fa/index.js";
 
 const Home = () => {
   const homepage = getListPage("_index.md");
@@ -19,20 +18,9 @@ const Home = () => {
   return (
     <>
       <SeoMeta />
-      <section className="section pt-0">
+      <section className="section pt-14">
         <div className="container">
           <div className="row justify-center">
-            {banner.image && (
-              <div className="col-12" style={{ marginTop: '-350px', marginBottom: '-350px' }}>
-                <ImageFallback
-                  src={banner.image}
-                  width="1272"
-                  height="100"
-                  alt="banner image"
-                  priority
-                />
-              </div>
-            )}
             <div className="mb-4 text-center lg:col-7">
               <h1
                 className="mb-4"
@@ -54,7 +42,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Rest of the code */}
     </>
   );
 };
