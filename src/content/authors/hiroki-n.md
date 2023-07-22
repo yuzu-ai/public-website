@@ -1,8 +1,8 @@
 ---
-title: Hiroki N
+title: hiroki
 email:
-image: "/images/profiles/hn-2.jpg"
-description: Hiroki N profile
+image: "/images/profiles/hn-shiba-1.png"
+description: hiroki profile
 social:
   facebook:
   twitter:
