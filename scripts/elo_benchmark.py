@@ -59,7 +59,7 @@ def convert_to_markdown(json_file, strength_fig_file, template_file, markdown_fi
 if __name__ == "__main__":
     convert_to_markdown(
         "./src/content/pages/registry.jsonl",
-        "/images/charts/rakuda_v1_gpt4ranking.png",
+        "/images/charts/rakuda_v1_8-10ranking.png",
         "./src/content/pages/benchmark-template.md",
         "./src/content/pages/benchmark.md",
     )
