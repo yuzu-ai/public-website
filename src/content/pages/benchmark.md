@@ -13,17 +13,18 @@ Please contact us if you have any suggestions or requests for models that you'd 
 
 | Rank | Model | Strength | Stronger than the next model at confidence level  | 
 | :--- | :---: | :---: | :---: |
-| 1 | <a target="_blank" href="https://openai.com/" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>openai/GPT-4</a> | 1520.915 ± 54.08 | 99.3%
-| 2 | <a target="_blank" href="https://openai.com/" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>openai/GPT-3.5</a> | 1384.640 ± 44.64 | 100.0%
-| 3 | <a target="_blank" href="https://huggingface.co/BlinkDL/rwkv-4-world" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>blinkdl/rwkv-4-world-jp55</a> | 1076.451 ± 34.05 | 91.2%
-| 4 | <a target="_blank" href="https://ai-novel.com/index.php" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>ainovelist/supertrin</a> | 1011.049 ± 31.88 | 100.0%
-| 5 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b-instruction-ppo</a> | 858.879 ± 33.67 | 61.9%
-| 6 | <a target="_blank" href="https://huggingface.co/izumi-lab/stormy-7b-10ep" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>izumi-lab/stormy-7b-10ep</a> | 845.253 ± 32.51 | 76.6%
-| 7 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft-v2" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b-instruction-sft-v2</a> | 810.862 ± 33.40 | 65.8%
-| 8 | <a target="_blank" href="https://huggingface.co/cyberagent/open-calm-7b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>cyberagent/open-calm-7b</a> | 791.314 ± 32.78 | 97.2%
-| 9 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b</a> | 698.791 ± 36.40 | N/A
+| 1 | <a target="_blank" href="https://openai.com/" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>openai/GPT-4</a> | 1550.063 ± 61.28 | 99.6%
+| 2 | <a target="_blank" href="https://openai.com/" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>openai/GPT-3.5</a> | 1391.467 ± 50.59 | 100.0%
+| 3 | <a target="_blank" href="https://huggingface.co/stabilityai/StableBeluga2" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>stabilityai/StableBeluga2</a> | 1172.644 ± 39.60 | 97.7%
+| 4 | <a target="_blank" href="https://huggingface.co/BlinkDL/rwkv-4-world" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>blinkdl/rwkv-4-world-jp55</a> | 1075.360 ± 37.17 | 99.2%
+| 5 | <a target="_blank" href="https://ai-novel.com/index.php" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>ainovelist/supertrin</a> | 956.012 ± 33.11 | 85.4%
+| 6 | <a target="_blank" href="https://huggingface.co/stabilityai/japanese-stablelm-instruct-alpha-7b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>stabilityai/japanese-stablelm-instruct-alpha-7b</a> | 903.474 ± 36.07 | 99.7%
+| 7 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b-instruction-ppo</a> | 762.803 ± 35.51 | 73.6%
+| 8 | <a target="_blank" href="https://huggingface.co/izumi-lab/stormy-7b-10ep" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>izumi-lab/stormy-7b-10ep</a> | 732.694 ± 35.40 | 54.1%
+| 9 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft-v2" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna/japanese-gpt-neox-3.6b-instruction-sft-v2</a> | 727.828 ± 35.83 | 51.3%
+| 10 | <a target="_blank" href="https://huggingface.co/cyberagent/open-calm-7b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>cyberagent/open-calm-7b</a> | 726.068 ± 36.64 | N/A
 
 
 ![Bradley-Terry strengths of AI assistants on the Rakuda benchmark](/images/charts/rakuda_v1_8-10ranking.png) 
 
-Date Updated: 2023-07-14
+Date Updated: 2023-08-10
