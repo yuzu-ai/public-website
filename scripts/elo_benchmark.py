@@ -20,9 +20,12 @@ def make_clickable_model(model_name):
     elif "super-torin" in model_name:
         link = "https://ai-novel.com/index.php"
         model_name = "ainovelist/supertrin"
-    elif "rwkv" in model_name:
+    elif "rwkv-world-jp-v1" in model_name:
         link = "https://huggingface.co/BlinkDL/rwkv-4-world"
-        model_name = "blinkdl/rwkv-4-world-jp55"
+        model_name = "blinkdl/rwkv-world-7b-jp-v1"
+    elif "rwkv-world-jpn-55" in model_name:
+        link = "https://huggingface.co/BlinkDL/rwkv-4-world"
+        model_name = "blinkdl/rwkv-world-7b-jp-v0.55"
 
     return model_hyperlink(link, model_name)
 
