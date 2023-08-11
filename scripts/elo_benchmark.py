@@ -39,7 +39,7 @@ def convert_to_markdown(json_file, strength_fig_file, template_file, markdown_fi
     table = "| Rank | Model | Strength | Stronger than the next model at confidence level  | \n| :--- | :---: | :---: | :---: |\n"
     for i, rank in enumerate(rankings):
         # assert(round(rank['one_sigma_up'],2) == round(rank['one_sigma_down'],2))
-        table += f"| {i+1} | {make_clickable_model(rank['model_id'])} | {rank['median']:.3f} ± {rank['one_sigma_up']:.2f} | { str(round(rank['stronger_than_next_confidence']*100,1))+'%' if rank['stronger_than_next_confidence']>0 else 'N/A'}\n"
+        table += f"| {i+1} | {make_clickable_model(rank['model_id'])} | {rank['median']:.0f} ± {rank['one_sigma_up']:.0f} | { str(round(rank['stronger_than_next_confidence']*100,1))+'%' if rank['stronger_than_next_confidence']>0 else 'N/A'}\n"
 
     with open(template_file, "r") as f:
         template = f.read()
