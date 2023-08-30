@@ -7,27 +7,27 @@ def model_hyperlink(link, model_name):
     return f'<a target="_blank" href="{link}" style={{{{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}}}>{model_name}</a>'
 
 
-def make_clickable_model(model_name):
+def make_clickable_model(model_name, short_name):
     link = f"https://huggingface.co/{model_name}"
 
     # Can hardcode urls and names here
     if "gpt-3.5-turbo" in model_name:
         link = "https://openai.com/"
-        model_name = "openai/GPT-3.5"
+        #model_name = "openai/GPT-3.5"
     elif "gpt-4" in model_name:
         link = "https://openai.com/"
-        model_name = "openai/GPT-4"
+        #model_name = "openai/GPT-4"
     elif "super-torin" in model_name:
         link = "https://ai-novel.com/index.php"
-        model_name = "ainovelist/supertrin"
+        #model_name = "ainovelist/supertrin"
     elif "rwkv-world-jp-v1" in model_name:
         link = "https://huggingface.co/BlinkDL/rwkv-4-world"
-        model_name = "blinkdl/rwkv-world-7b-jp-v1"
+        #model_name = "blinkdl/rwkv-world-7b-jp-v1"
     elif "rwkv-world-jpn-55" in model_name:
         link = "https://huggingface.co/BlinkDL/rwkv-4-world"
-        model_name = "blinkdl/rwkv-world-7b-jp-v0.55"
+        #model_name = "blinkdl/rwkv-world-7b-jp-v0.55"
 
-    return model_hyperlink(link, model_name)
+    return model_hyperlink(link, short_name)
 
 
 def convert_to_markdown(json_file, strength_fig_file, template_file, markdown_file):
@@ -39,7 +39,7 @@ def convert_to_markdown(json_file, strength_fig_file, template_file, markdown_fi
     table = "| Rank | Model | Strength | Stronger than the next model at confidence level  | \n| :--- | :---: | :---: | :---: |\n"
     for i, rank in enumerate(rankings):
         # assert(round(rank['one_sigma_up'],2) == round(rank['one_sigma_down'],2))
-        table += f"| {i+1} | {make_clickable_model(rank['model_id'])} | {rank['median']:.0f} ± {rank['one_sigma_up']:.0f} | { str(round(rank['stronger_than_next_confidence']*100,1))+'%' if rank['stronger_than_next_confidence']>0 else 'N/A'}\n"
+        table += f"| {i+1} | {make_clickable_model(rank['model_id'], rank['short_name'])} | {rank['median']:.0f} ± {rank['one_sigma_up']:.0f} | { str(round(rank['stronger_than_next_confidence']*100,1))+'%' if rank['stronger_than_next_confidence']>0 else 'N/A'}\n"
 
     with open(template_file, "r") as f:
         template = f.read()
@@ -62,7 +62,7 @@ def convert_to_markdown(json_file, strength_fig_file, template_file, markdown_fi
 if __name__ == "__main__":
     convert_to_markdown(
         "./src/content/pages/registry.jsonl",
-        "/images/charts/rakuda_v1_8-10ranking.png",
+        "/images/charts/rakuda_v1_8-30ranking.png",
         "./src/content/pages/benchmark-template.md",
         "./src/content/pages/benchmark.md",
     )
