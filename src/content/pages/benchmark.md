@@ -5,7 +5,7 @@ description: ""
 draft: false
 ---
 
-![Chart showing relative strength of models on Rakuda benchmark](/images/charts/rakuda_v1_8-30ranking.png)
+![Chart showing relative strength of models on Rakuda benchmark](/images/charts/ranking.png)
 
 **Rakuda** is a ranking of Japanese Large Language Models based on how well they answer a set of open-ended questions in Japanese about Japanese topics. We hope that Rakuda can help stimulate the development of open-source models that perform well in Japanese, in the spirit of English-language leaderboards like Huggingface's [human_eval_llm](https://huggingface.co/spaces/HuggingFaceH4/human_eval_llm_leaderboard). For a detailed explanation of how Rakuda works, please check out the [accompanying blog post](/blog/rakuda), and for the full code implementation check out the project on [github](https://github.com/yuzu-ai/japanese-llm-ranking).
 
@@ -15,20 +15,20 @@ Please contact us if you have any suggestions or requests for models that you'd 
 
 | Rank | Model | Strength | Stronger than the next model at confidence level  | 
 | :--- | :---: | :---: | :---: |
-| 1 | <a target="_blank" href="https://openai.com/" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>gpt-4</a> | 1526 ± 56 | 100.0%
-| 2 | <a target="_blank" href="https://openai.com/" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>gpt-3.5</a> | 1339 ± 40 | 100.0%
-| 3 | <a target="_blank" href="https://huggingface.co/stabilityai/StableBeluga2" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>llama2-70b (StableBeluga2)</a> | 1133 ± 32 | 84.8%
-| 4 | <a target="_blank" href="https://huggingface.co/elyza/ELYZA-japanese-Llama-2-7b-fast-instruct" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>elyza-ja-llama2-7b-fast (instruct)</a> | 1084 ± 34 | 55.4%
-| 5 | <a target="_blank" href="https://huggingface.co/NTQAI/chatntq-7b-jpntuned" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rwkv-world-7b (chatntq-jpn)</a> | 1078 ± 34 | 80.4%
-| 6 | <a target="_blank" href="https://huggingface.co/elyza/ELYZA-japanese-Llama-2-7b-instruct" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>elyza-ja-llama2-7b (instruct)</a> | 1038 ± 35 | 61.4%
-| 7 | <a target="_blank" href="https://huggingface.co/BlinkDL/rwkv-4-world" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rwkv-world-7b (jp-v1)</a> | 1024 ± 30 | 79.5%
-| 8 | <a target="_blank" href="https://huggingface.co/line-corporation/japanese-large-lm-3.6b-instruction-sft" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>line-3.6b (sft)</a> | 988 ± 32 | 79.9%
-| 9 | <a target="_blank" href="https://ai-novel.com/index.php" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>supertrin</a> | 952 ± 28 | 89.6%
-| 10 | <a target="_blank" href="https://huggingface.co/stabilityai/japanese-stablelm-instruct-alpha-7b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>ja-stablelm-7b (instruct-alpha)</a> | 900 ± 29 | 95.7%
-| 11 | <a target="_blank" href="https://huggingface.co/matsuo-lab/weblab-10b-instruction-sft" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>weblab-10b (SFT)</a> | 820 ± 35 | 96.8%
-| 12 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna-3.6b (ppo)</a> | 731 ± 33 | 70.4%
-| 13 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft-v2" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna-3.6b (sft)</a> | 706 ± 34 | 70.4%
-| 14 | <a target="_blank" href="https://huggingface.co/izumi-lab/stormy-7b-10ep" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>opencalm-7b (stormy)</a> | 680 ± 35 | N/A
+| 1 | <a target="_blank" href="https://openai.com/" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>gpt-4</a> | 1472 ± 49 | 97.5%
+| 2 | <a target="_blank" href="https://anthropic.com" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>claude-2</a> | 1353 ± 42 | 89.3%
+| 3 | <a target="_blank" href="https://openai.com/" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>gpt-3.5</a> | 1285 ± 37 | 100.0%
+| 4 | <a target="_blank" href="https://huggingface.co/stabilityai/StableBeluga2" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>llama2-70b (StableBeluga2)</a> | 1089 ± 30 | 85.8%
+| 5 | <a target="_blank" href="https://huggingface.co/elyza/ELYZA-japanese-Llama-2-7b-fast-instruct" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>elyza-7b-fast</a> | 1044 ± 29 | 75.0%
+| 6 | <a target="_blank" href="https://huggingface.co/NTQAI/ChatNTQ_7B_Japanese" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>chatntq-7b-jpntuned</a> | 1017 ± 29 | 50.9%
+| 7 | <a target="_blank" href="https://huggingface.co/elyza/ELYZA-japanese-Llama-2-7b-instruct" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>elyza-7b</a> | 1016 ± 29 | 86.8%
+| 8 | <a target="_blank" href="https://huggingface.co/BlinkDL/rwkv-4-world" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rwkv-world-7b-jp-v1</a> | 971 ± 29 | 89.8%
+| 9 | <a target="_blank" href="https://ai-novel.com/index.php" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>super-trin</a> | 921 ± 27 | 71.4%
+| 10 | <a target="_blank" href="https://huggingface.co/line-corporation/japanese-large-lm-3.6b-instruction-sft" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>line-3.6b</a> | 899 ± 29 | 92.8%
+| 11 | <a target="_blank" href="https://huggingface.co/stabilityai/japanese-stablelm-instruct-alpha-7b" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>ja-stablelm-7b</a> | 839 ± 28 | 95.3%
+| 12 | <a target="_blank" href="https://huggingface.co/matsuo-lab/weblab-10b-instruction-sft" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>weblab-10b</a> | 764 ± 33 | 97.5%
+| 13 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna-3.6b (PPO)</a> | 674 ± 36 | 66.2%
+| 14 | <a target="_blank" href="https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft-v2" style={{color: "var(--link-text-color)", textDecoration: "underline",textDecorationStyle: "dotted"}}>rinna-3.6b (SFT)</a> | 653 ± 36 | N/A
 
 
-Date Updated: 2023-08-30
+Date Updated: 2023-09-27

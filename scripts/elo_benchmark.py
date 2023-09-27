@@ -11,35 +11,37 @@ def make_clickable_model(model_name, short_name):
     link = f"https://huggingface.co/{model_name}"
 
     # Can hardcode urls and names here
-    if "gpt-3.5-turbo" in model_name:
-        link = "https://openai.com/"
-        #model_name = "openai/GPT-3.5"
-    elif "gpt-4" in model_name:
-        link = "https://openai.com/"
-        #model_name = "openai/GPT-4"
-    elif "super-torin" in model_name:
-        link = "https://ai-novel.com/index.php"
-        #model_name = "ainovelist/supertrin"
-    elif "rwkv-world-jp-v1" in model_name:
-        link = "https://huggingface.co/BlinkDL/rwkv-4-world"
-        #model_name = "blinkdl/rwkv-world-7b-jp-v1"
-    elif "rwkv-world-jpn-55" in model_name:
-        link = "https://huggingface.co/BlinkDL/rwkv-4-world"
-        #model_name = "blinkdl/rwkv-world-7b-jp-v0.55"
+    link_map = {"gpt-3.5" : "https://openai.com/",
+    "gpt-4": "https://openai.com/",
+    "claude": "https://anthropic.com",
+    "super-trin": "https://ai-novel.com/index.php",
+    "rwkv-world-jp": "https://huggingface.co/BlinkDL/rwkv-4-world",
+    "stablebeluga": "https://huggingface.co/stabilityai/StableBeluga2",
+    "line-3.6b-sft": "https://huggingface.co/line-corporation/japanese-large-lm-3.6b-instruction-sft",
+    "weblab-10b-instruction-sft":"https://huggingface.co/matsuo-lab/weblab-10b-instruction-sft",
+    "elyza-7b-fast": "https://huggingface.co/elyza/ELYZA-japanese-Llama-2-7b-fast-instruct",
+    "elyza-7b": "https://huggingface.co/elyza/ELYZA-japanese-Llama-2-7b-instruct",
+    "ja-stablelm-7b": "https://huggingface.co/stabilityai/japanese-stablelm-instruct-alpha-7b",
+    "rinna-3.6b-ppo": "https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-ppo",
+    "rinna-3.6b-sft": "https://huggingface.co/rinna/japanese-gpt-neox-3.6b-instruction-sft-v2",
+    "chatntq-7b-jpntuned": "https://huggingface.co/NTQAI/ChatNTQ_7B_Japanese"}
 
-    return model_hyperlink(link, short_name)
+    for key, link in link_map.items():
+        if key in short_name.lower() or key in model_name.lower():
+            return model_hyperlink(link, short_name)
+
+    return short_name
 
 
 def convert_to_markdown(json_file, strength_fig_file, template_file, markdown_file):
     with open(json_file, "r") as f:
-        last_line = f.readlines()[-1]
-        data = json.loads(last_line)
+        data = json.load(f)
 
     rankings = sorted(data["ranking"], key=lambda x: x["median"], reverse=True)
     table = "| Rank | Model | Strength | Stronger than the next model at confidence level  | \n| :--- | :---: | :---: | :---: |\n"
     for i, rank in enumerate(rankings):
         # assert(round(rank['one_sigma_up'],2) == round(rank['one_sigma_down'],2))
-        table += f"| {i+1} | {make_clickable_model(rank['model_id'], rank['short_name'])} | {rank['median']:.0f} ± {rank['one_sigma_up']:.0f} | { str(round(rank['stronger_than_next_confidence']*100,1))+'%' if rank['stronger_than_next_confidence']>0 else 'N/A'}\n"
+        table += f"| {i+1} | {make_clickable_model(rank['model_id'], rank['display_name'])} | {rank['median']:.0f} ± {rank['one_sigma_plus']:.0f} | { str(round(rank['stronger_than_next_confidence']*100,1))+'%' if rank['stronger_than_next_confidence']>0 else 'N/A'}\n"
 
     with open(template_file, "r") as f:
         template = f.read()
@@ -61,8 +63,8 @@ def convert_to_markdown(json_file, strength_fig_file, template_file, markdown_fi
 
 if __name__ == "__main__":
     convert_to_markdown(
-        "./src/content/pages/registry.jsonl",
-        "/images/charts/rakuda_v1_8-30ranking.png",
+        "./src/content/pages/ranking.json",
+        "/images/charts/ranking.png",
         "./src/content/pages/benchmark-template.md",
         "./src/content/pages/benchmark.md",
     )
